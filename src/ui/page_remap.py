@@ -368,6 +368,10 @@ class RemapPageMixin:
             self.show_info(tr("这条路径现在不存在，无法定位。"))
 
     def _pick_new_for(self, rec):
+        """弹文件选择，把结果记成这条素材的手动指定。返回选中的路径（取消返回 ""）。
+
+        返回路径是给「查找缺失」弹窗用的 —— 它得知道自己这张表该改成什么。
+        """
         cur = rec["manual"] or rec["old_path"]
         init_dir = os.path.dirname(cur) if cur else None
         init_name = os.path.basename(cur) if cur else None
@@ -376,7 +380,7 @@ class RemapPageMixin:
             initialdir=init_dir or None, initialfile=init_name or None,
             filetypes=[(tr("所有文件"), "*.*")])
         if not path:
-            return
+            return ""
         rec["manual"] = path
         recompute_remap([rec], [])
         self._render_remap()
@@ -386,6 +390,7 @@ class RemapPageMixin:
         else:
             self.status_var.set(
                 tr("已指定：{} → {}（该文件当前不存在，请确认）").format(rec["name"], path))
+        return path
 
     def _select_rec(self, rec):
         """重绘后把光标放回刚操作的那一行，免得滚动条跳回顶部"""

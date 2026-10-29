@@ -120,7 +120,7 @@ class FinderMixin:
         wrap, tbl, empty = self.make_table(win, [
             ("name", "素材名", 180, "w", False),
             ("cand", "建议文件", 230, "w", True),
-            ("score", "相似度", 60, "center", False),
+            ("score", "相似度", 78, "center", False),
             ("size", "大小", 80, "e", False),
             ("mtime", "修改时间", 118, "center", False),
             ("folder", "所在目录", 230, "w", True),
@@ -170,12 +170,24 @@ class FinderMixin:
 
         def ctx_pick():
             """不走建议，直接给这条素材挑一个新文件"""
-            item = res_map.get(ctx["iid"])
+            iid = ctx["iid"]
+            item = res_map.get(iid)
             if not item:
                 return
             rec = item[0]
-            self._pick_new_for(rec)        # 内部会刷新主表并写状态栏
-            lbl.configure(text=tr("已为「{}」单独指定新位置").format(rec["name"]))
+            path = self._pick_new_for(rec)     # 内部会刷新主表并写状态栏
+            if not path:
+                return
+            # 弹窗里这张表也得跟着变。以前只刷了主表，这里还挂着旧建议，
+            # 用户选完文件看不到任何变化，以为操作没生效。
+            lbl.configure(text=tr("已为「{}」单独指定新位置：{}").format(
+                rec["name"], os.path.basename(path)))
+            res_map[iid] = (rec, path, 1.0)
+            try:
+                tbl.item(iid, tags=("good",),
+                         values=(tbl.set(iid, "name"),) + cells_for(rec))
+            except Exception:
+                refill()        # 行已经被重铺掉了就整表重来，别再报错
 
         def ctx_reveal():
             item = res_map.get(ctx["iid"])
@@ -281,6 +293,22 @@ class FinderMixin:
             threading.Thread(target=work, daemon=True).start()
             poll()
 
+        def cells_for(rec, cand=None):
+            """一行表格的后 5 列（建议文件 / 相似度 / 大小 / 修改时间 / 所在目录）。
+
+            手动指定过新位置的素材，显示用户选的那个文件而不是扫描出来的建议 ——
+            否则右键选完文件，表格还挂着旧建议，看着像没生效。
+            """
+            man = rec.get("manual") or ""
+            if man:
+                sz, mt = file_info(man)
+                return (os.path.basename(man), tr("手动指定"), fmt_size(sz),
+                        fmt_mtime(mt), os.path.dirname(man))
+            return (os.path.basename(cand["path"]),
+                    f"{cand['score'] * 100:.0f}%",
+                    fmt_size(cand.get("size")), fmt_mtime(cand.get("mtime")),
+                    cand["folder"])
+
         def fill(res, truncated, n_index):
             """把匹配结果铺进表格。
 
@@ -293,8 +321,18 @@ class FinderMixin:
             tbl.delete(*tbl.get_children())
             res_map.clear()
             best_only = v_best.get()
-            n_cand = n_asset = n_auto = 0
+            n_cand = n_asset = n_auto = n_man = 0
             for i, r in enumerate(pool):
+                # 已经手动指定过的：只留一行，显示指定的文件，不再列建议
+                if r.get("manual"):
+                    iid = tbl.insert("", "end", tags=("good",),
+                                     values=(r["name"],) + cells_for(r))
+                    res_map[iid] = (r, r["manual"], 1.0)
+                    tbl.selection_add(iid)
+                    n_asset += 1
+                    n_cand += 1
+                    n_man += 1
+                    continue
                 cands = res.get(str(i), [])
                 if best_only:
                     cands = cands[:1]
@@ -317,6 +355,8 @@ class FinderMixin:
             btn_apply.configure(state="normal" if n_cand else "disabled")
             msg = tr("索引 {} 个文件，命中 {} 条素材 / {} 条候选，已自动选中 {} 条（相似度 ≥85%）").format(
                 n_index, n_asset, n_cand, n_auto)
+            if n_man:
+                msg += tr("　其中 {} 条已手动指定").format(n_man)
             if truncated:
                 msg += tr("　⚠ 已达文件数上限，建议缩小搜索目录或降低深度")
             lbl.configure(text=msg)
@@ -355,6 +395,16 @@ class FinderMixin:
                 k = id(rec)
                 if k not in best or sc > best[k][1]:
                     best[k] = (rec, sc, path)
+            # 「全部应用」时跳过已经手动指定过的：用户一个个挑好的新位置，
+            # 不该被一条相似度更低的老建议顶掉。显式选中某几行应用时不拦。
+            skipped = 0
+            if whole:
+                keep = {k: v for k, v in best.items() if not v[0]["manual"]}
+                skipped = len(best) - len(keep)
+                best = keep
+                if not best:
+                    lbl.configure(text=tr("这些候选都已经手动指定过新位置，无需再应用"))
+                    return
             if whole and len(best) > 50 and not self.messagebox.askyesno(
                     tr(self.APP_TITLE),
                     tr("要把 {} 条素材的建议路径全部填进重定向表吗？\n\n"
@@ -367,7 +417,10 @@ class FinderMixin:
                 recompute_remap([rec], [])
             self._render_remap()
             n = len(best)
-            lbl.configure(text=tr("已把 {} 条建议填进重定向表").format(n))
+            msg = tr("已把 {} 条建议填进重定向表").format(n)
+            if skipped:
+                msg += tr("（{} 条手动指定保持不变）").format(skipped)
+            lbl.configure(text=msg)
             self.status_var.set(tr("已为 {} 条缺失素材填上建议路径").format(n))
 
         btn_scan.configure(command=do_scan)

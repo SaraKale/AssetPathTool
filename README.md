@@ -181,7 +181,7 @@ exported twice), and file name plus score alone can't tell them apart. Those two
 > To change only some of them, `Ctrl` / `Shift`-select those rows first.
 >
 > A missing asset can produce several candidates (short names especially — anything sharing a series
-> prefix like "仙剑3外传" matches everything). Those aren't duplicate rows, they're alternatives for the same
+> Those aren't duplicate rows, they're alternatives for the same
 > asset. "Keep only the best candidate per asset" is on by default and hides the low scorers; untick it to
 > see them all, with the 2nd and later rows of the same asset labelled `└ alt` and grouped together.
 >

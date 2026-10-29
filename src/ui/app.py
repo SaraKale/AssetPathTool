@@ -250,9 +250,14 @@ class App(FinderMixin, ExtractPageMixin, DiffPageMixin, RemapPageMixin,
                 fns[i]()
             except Exception:
                 pass
-        # 查找缺失窗口的底部提示是动态文本，单独清掉
+        # 查找缺失窗口：底部提示是动态文本，表格里也有「手动指定」这种要翻译的
+        # 单元格（其余列是文件名 / 目录，不翻译），所以顺手重铺一遍
         try:
-            self._finder["label"].configure(text="")
+            f = self._finder
+            if f["win"].winfo_exists():
+                f["label"].configure(text="")
+                if not f["busy"]["busy"] and f["busy"]["last"]:
+                    f["refill"]()
         except Exception:
             pass
 

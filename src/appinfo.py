@@ -16,7 +16,7 @@ APP_NAME = "AssetPathTool"
 APP_ID = APP_NAME
 
 # 版本号 —— 由维护者手动改，不要自动递增
-APP_VER = "1.0.0"
+APP_VER = "1.0.1"
 
 # 作者 / 仓库（发布前把 APP_REPO 改成你自己的仓库地址，README 里的徽章会用到）
 APP_AUTHOR = "SaraKale"
