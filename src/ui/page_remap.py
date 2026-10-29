@@ -125,6 +125,11 @@ class RemapPageMixin:
         self.rm_records = []
         self.rm_iid = {}        # iid -> record
         self.rules = []
+        # 「应用规则」是个显式动作：加载项目时一律只铺原路径，绝不自动套规则。
+        # 以前 _remap_done 会自动 recompute，换个项目文件后上一批规则立刻作用到
+        # 新项目上，用户以为自己加载的是原始路径 —— 这个开关就是防这个。
+        self._rm_rules_on = False
+        self._rm_loaded_src = ""
         self.bind_check_column(self.rm_tree, lambda iid: self.rm_iid.get(iid),
                                on_change=self._rm_check_changed)
         # 改写开关放在「规则表」弹窗里，但变量本身常驻，导出时要用
@@ -262,6 +267,18 @@ class RemapPageMixin:
         self._refresh_rules()
 
     # ---------------------------------------------------------------- 规则增删
+    def _rules_edited(self):
+        """规则表改过之后：重画规则表；规则已经应用过的，主表也跟着重算。
+
+        不重算的话表格会停在旧规则的结果上，导出却按新规则走，两边对不上。
+        """
+        self._refresh_rules()
+        if self._rm_rules_on and self.rm_records:
+            recompute_remap(self.rm_records, list(self.rules))
+            self._render_remap()
+        if not self.rules:
+            self._rm_rules_on = False   # 规则都没了，也就不算「已应用」
+
     def _add_rule(self):
         old = self.v_rm_old.get().strip()
         new = self.v_rm_new.get().strip()
@@ -269,7 +286,7 @@ class RemapPageMixin:
             self.show_warn(tr("请填写「原路径前缀」"))
             return
         self.rules.append((old, new))
-        self._refresh_rules()
+        self._rules_edited()
         self.v_rm_old.set("")
         self.v_rm_new.set("")
 
@@ -281,7 +298,7 @@ class RemapPageMixin:
         for idx in idxs:
             if 0 <= idx < len(self.rules):
                 del self.rules[idx]
-        self._refresh_rules()
+        self._rules_edited()
 
     def _move_rule(self, delta):
         sel = self.rule_tree.selection()
@@ -292,14 +309,21 @@ class RemapPageMixin:
         if not (0 <= i < len(self.rules) and 0 <= j < len(self.rules)):
             return
         self.rules[i], self.rules[j] = self.rules[j], self.rules[i]
-        self._refresh_rules()
+        self._rules_edited()
         iid = self.rule_tree.get_children()[j]
         self.rule_tree.selection_set(iid)
         self.rule_tree.focus(iid)
 
     def _clear_rules(self):
+        # 注意顺序：_rules_edited 靠 _rm_rules_on 判断要不要重算主表，
+        # 所以先把「清空前是否已应用」记下来，再清标记，最后自己退回原路径。
+        was_on = self._rm_rules_on
         self.rules = []
+        self._rm_rules_on = False
         self._refresh_rules()
+        if was_on and self.rm_records:
+            recompute_remap(self.rm_records, [])
+            self._render_remap()
 
     def _refresh_rules(self):
         t = getattr(self, "rule_tree", None)
@@ -411,6 +435,23 @@ class RemapPageMixin:
             self.show_warn(tr("请先选择项目文件"))
             return
 
+        # 换一个项目文件 = 整张表重来，手动指定的新位置会跟着没。
+        # 规则表里的规则不受影响（换项目后也得再点一次「应用规则」），
+        # 所以只对手动指定那几条问一句。
+        prev = self._rm_loaded_src
+        if prev and self.rm_records and (
+                os.path.normcase(os.path.abspath(prev))
+                != os.path.normcase(os.path.abspath(src))):
+            n = sum(1 for r in self.rm_records if r["manual"])
+            if n and not self.messagebox.askyesno(
+                    tr(self.APP_TITLE),
+                    tr("当前项目里有 {} 条手动指定的新位置。\n\n"
+                       "加载「{}」会清空这些指定；规则表里的规则会保留，"
+                       "但要重新点「应用规则」才会套到新项目上。继续吗？").format(
+                           n, os.path.basename(src)),
+                    parent=self.root):
+                return
+
         def work(q):
             q.put(("msg", tr("读取项目…")))
             recs = extract_any(src, progress=lambda m: q.put(("msg", m)))
@@ -428,6 +469,7 @@ class RemapPageMixin:
             self.show_info(tr("请先在「规则表」里添加至少一条规则"))
             return
         recompute_remap(self.rm_records, list(self.rules))
+        self._rm_rules_on = True
         self._render_remap()
         manual = sum(1 for r in self.rm_records if r["manual"])
         self.status_var.set(
@@ -451,20 +493,31 @@ class RemapPageMixin:
             return
         for r in self.rm_records:
             r["manual"] = ""
-        recompute_remap(self.rm_records, list(self.rules))
+        # 规则没被显式应用过就别顺手套上 —— 清手动指定只该回到「当前状态」
+        recompute_remap(self.rm_records,
+                        list(self.rules) if self._rm_rules_on else [])
         self._render_remap()
         self.status_var.set(tr("已清除 {} 条手动指定").format(n))
 
     def _remap_done(self, records):
+        """加载完成：只铺原路径。
+
+        这里**故意不自动套规则**。以前会自动 recompute，结果换个项目文件后
+        上一批规则立刻改写新项目，用户看到的已经不是它自己的原路径了。
+        「应用规则」改成只认显式点击，作用范围就是当前加载的这个项目。
+        """
         self.rm_records = remap_records(records)
-        if self.rules:
-            recompute_remap(self.rm_records, list(self.rules))
+        self._rm_rules_on = False
+        self._rm_loaded_src = self.v_rm_src.get().strip().strip('"')
         for b in (self.btn_rm_txt, self.btn_rm_csv, self.btn_rm_apply,
                   self.btn_rm_reset, self.btn_rm_find, self.btn_rm_prproj):
             b.configure(state="normal")
         self._render_remap()
-        self.status_var.set(
-            tr("已加载 {} 条路径　双击任意一行可单独指定新位置").format(len(self.rm_records)))
+        msg = tr("已加载 {} 条路径（原路径，未套用规则）　双击任意一行可单独指定新位置").format(
+            len(self.rm_records))
+        if self.rules:
+            msg += tr("　规则表里有 {} 条规则，点「应用规则」才会生效").format(len(self.rules))
+        self.status_var.set(msg)
 
     def _render_remap(self):
         t = self.rm_tree
@@ -577,11 +630,15 @@ class RemapPageMixin:
         if os.path.normcase(os.path.abspath(dst)) == os.path.normcase(os.path.abspath(src)):
             self.show_warn(tr("不能覆盖原工程文件。\n\n请换一个文件名（比如加「_重定向」后缀）。"))
             return
-        # 逐条手动指定的路径走精确映射；其余仍按前缀规则兜底
+        # 逐条手动指定的路径走精确映射；规则只在用户显式「应用规则」过之后
+        # 才作为兜底 —— 否则表格里明明显示「命中改写 0 条」，导出的文件却被
+        # 悄悄按规则改写了（改 ActualMediaFilePath 这类没进表格的兄弟标签时还要靠它）
         mapping = {r["old_path"]: r["path"] for r in self.rm_records
                    if r["changed"] and r["old_path"] and r["path"]}
         try:
-            n = rewrite_project(src, dst, list(self.rules), mapping=mapping)
+            n = rewrite_project(src, dst,
+                                list(self.rules) if self._rm_rules_on else [],
+                                mapping=mapping)
         except Exception as ex:
             self.show_error(tr("改写失败：{}").format(ex))
             return

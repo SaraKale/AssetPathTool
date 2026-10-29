@@ -161,6 +161,12 @@ To turn the changes into prefix rules as well (so assets added later get remappe
 6. Once everything looks right, **Export list** for the path list, or **Export new file** to save a
    rewritten copy of the project (**the original is never overwritten**).
 
+> **Rules only apply to the project you loaded.** Load a different project and the table shows that
+> project's own paths — the previous rule set is never applied behind your back. The rules stay in
+> the rule list; click **Apply rules** again if you want to reuse them.
+> If the current project has hand-picked locations, switching projects asks first — those picks
+> belong to the project you picked them for.
+
 **Export buttons** (top right, left to right):
 
 | Button | Output |

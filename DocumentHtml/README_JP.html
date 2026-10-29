@@ -667,7 +667,7 @@ var highlightItemOnlyInOutline = function(id) {
 
         <div id="post-content" class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
         <div id="vx-content" class="vx-constrain-image-width line-numbers"><h1 id="素材パス抽出ツール-·-asset-path-tool" class="source-line" data-source-line="0">素材パス抽出ツール · Asset Path Tool<a class="vx-header-anchor" href="#素材パス抽出ツール-·-asset-path-tool" vx-data-anchor-icon="¶"></a></h1>
-<p class="source-line" data-source-line="2"><a href="README.html">English</a> | <a href="README_SC.html">简体中文</a> | <a href="README_TC.html">繁體中文</a> | <a href="README_JP.html">日本語</a></p>
+<p class="source-line" data-source-line="2"><a href="README.md">English</a> | <a href="README_SC.md">简体中文</a> | <a href="README_TC.md">繁體中文</a> | <a href="README_JP.md">日本語</a></p>
 <p class="source-line" data-source-line="4"><strong>Adobe Premiere Pro / After Effects / Audition</strong> のプロジェクトから素材パスを抽出し、比較・再指定・使用状況の集計まで行えるツールです。</p>
 <figure><img src="image/Preview_JP.jpg" alt="" class="vx-image-view-image"></figure>
 <hr>
@@ -899,8 +899,14 @@ python AssetPathToolMain.py --cli project.prproj --usage
 <li class="source-line" data-source-line="160">問題なければ「リストを書き出す」でパス一覧を取得するか、「新しいファイルを書き出す」で<br>
 書き換え済みプロジェクトを別名保存します（<strong>元のプロジェクトは上書きしません</strong>）。</li>
 </ol>
-<p class="source-line" data-source-line="163"><strong>書き出しボタン</strong>（右上、左から）：</p>
-<table class="source-line" data-source-line="165">
+<blockquote>
+<p class="source-line" data-source-line="163"><strong>ルールが効くのは「いま読み込んでいるプロジェクト」だけです。</strong> 別のプロジェクトを読み込むと、<br>
+表はそのプロジェクト自身の元のパスに戻ります（前のルールが勝手に適用されることはありません）。<br>
+ルール表のルールは残るので、再利用したいときはもう一度「ルールを適用」を押してください。<br>
+手動指定した新しい場所がある状態で別のプロジェクトを読み込む場合は、先に確認が出ます。</p>
+</blockquote>
+<p class="source-line" data-source-line="168"><strong>書き出しボタン</strong>（右上、左から）：</p>
+<table class="source-line" data-source-line="170">
 <thead>
 <tr>
 <th>ボタン</th>
@@ -922,37 +928,38 @@ python AssetPathToolMain.py --cli project.prproj --usage
 </tr>
 </tbody>
 </table>
-<p class="source-line" data-source-line="171"><strong>「欠落を検索…」ダイアログでも右クリック可</strong>：<code>この候補を採用</code> / <code>新しい場所を選択…</code> / <code>エクスプローラーで表示</code>。<br>
+<p class="source-line" data-source-line="176"><strong>「欠落を検索…」ダイアログでも右クリック可</strong>：<code>この候補を採用</code> / <code>新しい場所を選択…</code> / <code>エクスプローラーで表示</code>。<br>
 「この候補を採用」は右クリックした行だけに適用されます。「新しい場所を選択…」は照合結果を無視して<br>
 直接ファイルを指定できます。「表示」はエクスプローラーを開いてファイルを選択状態にします。</p>
-<p class="source-line" data-source-line="175">結果表には素材名と類似度だけでなく、候補ファイルの<strong>サイズ</strong>と<strong>更新日時</strong>も出ます。<br>
+<p class="source-line" data-source-line="180">結果表には素材名と類似度だけでなく、候補ファイルの<strong>サイズ</strong>と<strong>更新日時</strong>も出ます。<br>
 同名で別バージョンというのはよくあること（4K 修復版、圧縮版、二度書き出したもの）で、<br>
 ファイル名と類似度だけでは判断できません。この 2 列があれば一目で判別できます。</p>
 <blockquote>
-<p class="source-line" data-source-line="179"><strong>何も選択せずに「再指定表に適用」を押すと全件適用</strong>（各素材の最良候補を採用）。<br>
+<p class="source-line" data-source-line="184"><strong>何も選択せずに「再指定表に適用」を押すと全件適用</strong>（各素材の最良候補を採用）。<br>
 一部だけ変えたいときは <code>Ctrl</code> / <code>Shift</code> でその行を選んでから押してください。</p>
-<p class="source-line" data-source-line="182">欠落素材は複数の候補が出ることがあります（短い名前ほど顕著で<br>プレフィックスが付いていると全部一致します）。これは重複行ではなく、同じ素材の代替候補です。<br>
+<p class="source-line" data-source-line="187">欠落素材は複数の候補が出ることがあります（短い名前ほど顕著で）<br>
+プレフィックスが付いていると全部一致します）。これは重複行ではなく、同じ素材の代替候補です。<br>
 既定で「各素材は最良候補のみ残す」がオンになっており、低スコアの候補は非表示です。<br>
 チェックを外すと全件表示になり、同じ素材の 2 件目以降は素材名列に <code>└ 代替</code> と付いて並びます。</p>
-<p class="source-line" data-source-line="187">表の先頭列の <code>☐</code> は「欠落を検索…」の対象範囲を決めます。チェックした行があればその行だけ、<br>
+<p class="source-line" data-source-line="192">表の先頭列の <code>☐</code> は「欠落を検索…」の対象範囲を決めます。チェックした行があればその行だけ、<br>
 なければ選択中の行、どちらも無ければ欠落素材すべてが対象です。</p>
-<p class="source-line" data-source-line="190">一括チェックは「チェック / すべて選択 / すべて解除」の 3 ボタン：</p>
+<p class="source-line" data-source-line="195">一括チェックは「チェック / すべて選択 / すべて解除」の 3 ボタン：</p>
 <ul>
-<li class="source-line" data-source-line="191"><strong>チェック</strong> — 表で <code>Ctrl</code> / <code>Shift</code> 選択している行にチェックを入れます；</li>
-<li class="source-line" data-source-line="192"><strong>すべて選択</strong> — 現在の「表示」で絞り込んだ後に<strong>見えている</strong>行にチェック（絞り込まれて非表示の行はそのまま）；</li>
-<li class="source-line" data-source-line="193"><strong>すべて解除</strong> — <strong>絞り込まれて非表示の行も含めて</strong>すべて解除。残しません。</li>
+<li class="source-line" data-source-line="196"><strong>チェック</strong> — 表で <code>Ctrl</code> / <code>Shift</code> 選択している行にチェックを入れます；</li>
+<li class="source-line" data-source-line="197"><strong>すべて選択</strong> — 現在の「表示」で絞り込んだ後に<strong>見えている</strong>行にチェック（絞り込まれて非表示の行はそのまま）；</li>
+<li class="source-line" data-source-line="198"><strong>すべて解除</strong> — <strong>絞り込まれて非表示の行も含めて</strong>すべて解除。残しません。</li>
 </ul>
-<p class="source-line" data-source-line="195">「手動指定をクリア」が消すのは<strong>手動で指定した新しいパス</strong>（ダブルクリック / 右クリックで選んだもの）です。<br>
+<p class="source-line" data-source-line="200">「手動指定をクリア」が消すのは<strong>手動で指定した新しいパス</strong>（ダブルクリック / 右クリックで選んだもの）です。<br>
 クリアした行はルールから再計算されます。チェックや絞り込みとは無関係です。</p>
 </blockquote>
 <blockquote>
-<p class="source-line" data-source-line="198">⚠️ 書き換え前にプロジェクトをバックアップしてください。出力は常に新しいファイルで、元のプロジェクトは<br>
+<p class="source-line" data-source-line="203">⚠️ 書き換え前にプロジェクトをバックアップしてください。出力は常に新しいファイルで、元のプロジェクトは<br>
 1 バイトも変更しません。</p>
 </blockquote>
-<h3 id="④-使用状況" class="source-line" data-source-line="201">④ 使用状況<a class="vx-header-anchor" href="#④-使用状況" vx-data-anchor-icon="¶"></a></h3>
-<p class="source-line" data-source-line="203"><code>.prproj</code> を選んで「集計開始」。バッジに素材総数 / 使用済み / 未使用 / シーケンス数 / タイムライン合計時間が出ます。</p>
-<p class="source-line" data-source-line="205">右上の「表示」で切り替え：</p>
-<table class="source-line" data-source-line="207">
+<h3 id="④-使用状況" class="source-line" data-source-line="206">④ 使用状況<a class="vx-header-anchor" href="#④-使用状況" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="208"><code>.prproj</code> を選んで「集計開始」。バッジに素材総数 / 使用済み / 未使用 / シーケンス数 / タイムライン合計時間が出ます。</p>
+<p class="source-line" data-source-line="210">右上の「表示」で切り替え：</p>
+<table class="source-line" data-source-line="212">
 <thead>
 <tr>
 <th>表示</th>
@@ -974,19 +981,19 @@ python AssetPathToolMain.py --cli project.prproj --usage
 </tr>
 </tbody>
 </table>
-<p class="source-line" data-source-line="213">「フォルダ別」が一番実用的です。ディスクが一杯に近づいたとき、どのフォルダが最も容量を食っていて、<br>
+<p class="source-line" data-source-line="218">「フォルダ別」が一番実用的です。ディスクが一杯に近づいたとき、どのフォルダが最も容量を食っていて、<br>
 そのうちどれだけが一度も使われていないかが分かります（実測で 1152 素材のプロジェクトにおいて、<br>
 あるフォルダは 42 素材で 194 GB を占めていました）。<br>
 「表示」の絞り込みは集計ビューにも効くので、「未使用」のグループだけを見ることもできます。</p>
-<p class="source-line" data-source-line="218"><strong>フォルダのドラッグ</strong>：「欠落を検索…」ウィンドウにフォルダを落とすと検索ディレクトリに入ります。<br>
+<p class="source-line" data-source-line="223"><strong>フォルダのドラッグ</strong>：「欠落を検索…」ウィンドウにフォルダを落とすと検索ディレクトリに入ります。<br>
 ウィンドウが開いていないときにメイン画面へ落としても転送されます（開いていなければ先に開くよう案内します）。</p>
 <hr>
-<h2 id="多言語" class="source-line" data-source-line="223">多言語<a class="vx-header-anchor" href="#多言語" vx-data-anchor-icon="¶"></a></h2>
-<p class="source-line" data-source-line="225">画面は 简体中文 / 繁體中文 / English / 日本語 に対応しています。右上のドロップダウンでいつでも切り替えられ、<br>
+<h2 id="多言語" class="source-line" data-source-line="228">多言語<a class="vx-header-anchor" href="#多言語" vx-data-anchor-icon="¶"></a></h2>
+<p class="source-line" data-source-line="230">画面は 简体中文 / 繁體中文 / English / 日本語 に対応しています。右上のドロップダウンでいつでも切り替えられ、<br>
 <strong>ウィンドウは再構築されません</strong>。入力欄のパスも表のデータもそのまま残ります。</p>
-<p class="source-line" data-source-line="228">初回起動時はシステムの UI 言語を読んで自動選択し、以降は選択を記憶します。設定ファイルは<br>
+<p class="source-line" data-source-line="233">初回起動時はシステムの UI 言語を読んで自動選択し、以降は選択を記憶します。設定ファイルは<br>
 <strong>プログラムの隣</strong>に置かれるので見つけやすいです：</p>
-<table class="source-line" data-source-line="231">
+<table class="source-line" data-source-line="236">
 <thead>
 <tr>
 <th>実行方法</th>
@@ -1008,18 +1015,18 @@ python AssetPathToolMain.py --cli project.prproj --usage
 </tr>
 </tbody>
 </table>
-<p class="source-line" data-source-line="237">ポータブル前提なので、<strong>フォルダごと別の PC にコピーすれば言語設定も一緒に移動します</strong>。<br>
+<p class="source-line" data-source-line="242">ポータブル前提なので、<strong>フォルダごと別の PC にコピーすれば言語設定も一緒に移動します</strong>。<br>
 「システムに追従」に戻したいときは、このファイルを削除して再起動してください。</p>
-<p class="source-line" data-source-line="240">言語を追加するには：<code>src/i18n.py</code> の <code>LANGS</code> に 1 行追加し、<code>_T</code> の各項目に 1 列追加します。</p>
+<p class="source-line" data-source-line="245">言語を追加するには：<code>src/i18n.py</code> の <code>LANGS</code> に 1 行追加し、<code>_T</code> の各項目に 1 列追加します。</p>
 <hr>
-<h2 id="ビルド" class="source-line" data-source-line="244">ビルド<a class="vx-header-anchor" href="#ビルド" vx-data-anchor-icon="¶"></a></h2>
-<h3 id="ローカルでビルド" class="source-line" data-source-line="246">ローカルでビルド<a class="vx-header-anchor" href="#ローカルでビルド" vx-data-anchor-icon="¶"></a></h3>
-<div class="code-toolbar"><pre class="language-bash line-numbers"><code class="source-line language-bash" data-source-line="248">pip <span class="token function">install</span> pyinstaller
+<h2 id="ビルド" class="source-line" data-source-line="249">ビルド<a class="vx-header-anchor" href="#ビルド" vx-data-anchor-icon="¶"></a></h2>
+<h3 id="ローカルでビルド" class="source-line" data-source-line="251">ローカルでビルド<a class="vx-header-anchor" href="#ローカルでビルド" vx-data-anchor-icon="¶"></a></h3>
+<div class="code-toolbar"><pre class="language-bash line-numbers"><code class="source-line language-bash" data-source-line="253">pip <span class="token function">install</span> pyinstaller
 pyinstaller AssetPathTool.spec --noconfirm
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<p class="source-line" data-source-line="253">出力は <code>dist/AssetPathTool/</code> に生成されます。</p>
-<p class="source-line" data-source-line="255"><code>.spec</code> の要点：</p>
-<table class="source-line" data-source-line="257">
+<p class="source-line" data-source-line="258">出力は <code>dist/AssetPathTool/</code> に生成されます。</p>
+<p class="source-line" data-source-line="260"><code>.spec</code> の要点：</p>
+<table class="source-line" data-source-line="262">
 <thead>
 <tr>
 <th>項目</th>
@@ -1055,19 +1062,19 @@ pyinstaller AssetPathTool.spec --noconfirm
 </tr>
 </tbody>
 </table>
-<h3 id="github-actions" class="source-line" data-source-line="265">GitHub Actions<a class="vx-header-anchor" href="#github-actions" vx-data-anchor-icon="¶"></a></h3>
-<p class="source-line" data-source-line="267"><code>.github/workflows/build-app.yml</code> は設定済みで、6 プラットフォームのマトリクスに対応：</p>
-<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="269">Windows x64 / Windows ARM64 / macOS Intel / macOS ARM64 / Linux x64 / Linux ARM64
+<h3 id="github-actions" class="source-line" data-source-line="270">GitHub Actions<a class="vx-header-anchor" href="#github-actions" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="272"><code>.github/workflows/build-app.yml</code> は設定済みで、6 プラットフォームのマトリクスに対応：</p>
+<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="274">Windows x64 / Windows ARM64 / macOS Intel / macOS ARM64 / Linux x64 / Linux ARM64
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p class="source-line" data-source-line="273">トリガー方法：</p>
+<p class="source-line" data-source-line="278">トリガー方法：</p>
 <ul>
-<li class="source-line" data-source-line="275"><strong>タグを push</strong>：<code>git tag v1.0.0 &amp;&amp; git push origin v1.0.0</code> → 自動ビルドして <strong>Draft Release</strong> を作成；</li>
-<li class="source-line" data-source-line="276"><strong>手動</strong>：Actions ページ → Build Asset Path Tool → Run workflow。<code>release_tag</code> にバージョンを記入<br>
+<li class="source-line" data-source-line="280"><strong>タグを push</strong>：<code>git tag v1.0.0 &amp;&amp; git push origin v1.0.0</code> → 自動ビルドして <strong>Draft Release</strong> を作成；</li>
+<li class="source-line" data-source-line="281"><strong>手動</strong>：Actions ページ → Build Asset Path Tool → Run workflow。<code>release_tag</code> にバージョンを記入<br>
 （空欄なら artifact のみ生成し、Release は作りません）。</li>
 </ul>
 <hr>
-<h2 id="プロジェクト構成" class="source-line" data-source-line="281">プロジェクト構成<a class="vx-header-anchor" href="#プロジェクト構成" vx-data-anchor-icon="¶"></a></h2>
-<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="283">AssetPathToolMain.py        エントリポイント（GUI / CLI の振り分け）
+<h2 id="プロジェクト構成" class="source-line" data-source-line="286">プロジェクト構成<a class="vx-header-anchor" href="#プロジェクト構成" vx-data-anchor-icon="¶"></a></h2>
+<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="288">AssetPathToolMain.py        エントリポイント（GUI / CLI の振り分け）
 AssetPathTool.spec          PyInstaller ビルド設定
 src/
   appinfo.py                アプリ名 / バージョン / 設定ディレクトリ
@@ -1097,66 +1104,66 @@ src/
     update_win.py           「アップデートを確認」ダイアログ
 tkwebui/                    画面テーマライブラリ（MIT、プロジェクトに同梱）
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p class="source-line" data-source-line="315"><code>src/core/</code> は tkinter を import しないので、スクリプトやユニットテストに単独で使えます：</p>
-<div class="code-toolbar"><pre class="language-python line-numbers"><code class="source-line language-python" data-source-line="317"><span class="token keyword">from</span> src<span class="token punctuation">.</span>core<span class="token punctuation">.</span>loader <span class="token keyword">import</span> extract_any
+<p class="source-line" data-source-line="320"><code>src/core/</code> は tkinter を import しないので、スクリプトやユニットテストに単独で使えます：</p>
+<div class="code-toolbar"><pre class="language-python line-numbers"><code class="source-line language-python" data-source-line="322"><span class="token keyword">from</span> src<span class="token punctuation">.</span>core<span class="token punctuation">.</span>loader <span class="token keyword">import</span> extract_any
 <span class="token keyword">for</span> r <span class="token keyword">in</span> extract_any<span class="token punctuation">(</span><span class="token string">"project.prproj"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">[</span><span class="token string">"folder"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> r<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> r<span class="token punctuation">[</span><span class="token string">"exists"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
 <hr>
-<h2 id="注意事項" class="source-line" data-source-line="325">注意事項<a class="vx-header-anchor" href="#注意事項" vx-data-anchor-icon="¶"></a></h2>
+<h2 id="注意事項" class="source-line" data-source-line="330">注意事項<a class="vx-header-anchor" href="#注意事項" vx-data-anchor-icon="¶"></a></h2>
 <ul>
-<li class="source-line" data-source-line="327"><strong><code>.prproj</code> は gzip 圧縮された XML</strong>（マジック <code>1f 8b</code>）です。本ツールが自動で解凍するので、手動での<br>
+<li class="source-line" data-source-line="332"><strong><code>.prproj</code> は gzip 圧縮された XML</strong>（マジック <code>1f 8b</code>）です。本ツールが自動で解凍するので、手動での<br>
 展開は不要です。</li>
-<li class="source-line" data-source-line="329"><strong><code>.prproj</code> の書き換えは新しいファイルを書くだけ</strong>で、元のプロジェクトは変更されません。ただし書き換えは<br>
+<li class="source-line" data-source-line="334"><strong><code>.prproj</code> の書き換えは新しいファイルを書くだけ</strong>で、元のプロジェクトは変更されません。ただし書き換えは<br>
 実験的な機能です。<strong>必ずバックアップを取り</strong>、生成物を Premiere で開いて素材がすべてオンラインか確認してください。</li>
-<li class="source-line" data-source-line="331"><strong>素材が「存在する」かどうかは、本ツールを実行している PC 次第</strong>です。PC A で作った一覧を PC B で見ると<br>
+<li class="source-line" data-source-line="336"><strong>素材が「存在する」かどうかは、本ツールを実行している PC 次第</strong>です。PC A で作った一覧を PC B で見ると<br>
 欠落数が変わりますが、これは正常です。</li>
-<li class="source-line" data-source-line="333"><strong>大きなプロジェクトには時間がかかります</strong>。1000 素材以上の解析は 1〜2 秒程度。「欠落を検索」で<br>
+<li class="source-line" data-source-line="338"><strong>大きなプロジェクトには時間がかかります</strong>。1000 素材以上の解析は 1〜2 秒程度。「欠落を検索」で<br>
 数十万ファイルの素材ディスクを走査するとさらに時間がかかるため、先に対象を絞るよう案内が出ます。</li>
-<li class="source-line" data-source-line="335"><strong><code>.aep</code> は読み取り専用</strong>です（上記参照）。<code>.prproj</code> / <code>.sesx</code> は書き換え版を別名保存できますが、<br>
+<li class="source-line" data-source-line="340"><strong><code>.aep</code> は読み取り専用</strong>です（上記参照）。<code>.prproj</code> / <code>.sesx</code> は書き換え版を別名保存できますが、<br>
 <strong>元ファイルを上書きすることはありません</strong>。</li>
-<li class="source-line" data-source-line="337"><strong>設定ファイル</strong>はプログラムの隣の <code>AssetPathTool.config.json</code> で、記録するのは UI 言語だけです。<br>
+<li class="source-line" data-source-line="342"><strong>設定ファイル</strong>はプログラムの隣の <code>AssetPathTool.config.json</code> で、記録するのは UI 言語だけです。<br>
 削除すれば既定に戻ります。</li>
 </ul>
-<h2 id="よくある質問" class="source-line" data-source-line="340">よくある質問<a class="vx-header-anchor" href="#よくある質問" vx-data-anchor-icon="¶"></a></h2>
-<p class="source-line" data-source-line="342"><strong>Q：tkinter が無いと言われる</strong><br>
+<h2 id="よくある質問" class="source-line" data-source-line="345">よくある質問<a class="vx-header-anchor" href="#よくある質問" vx-data-anchor-icon="¶"></a></h2>
+<p class="source-line" data-source-line="347"><strong>Q：tkinter が無いと言われる</strong><br>
 Windows は <a href="http://python.org">python.org</a> の公式インストーラーで入れ直し、<code>tcl/tk and IDLE</code> にチェック。Ubuntu は<br>
 <code>sudo apt install python3-tk</code>。macOS は <a href="http://python.org">python.org</a> 版を使ってください（brew の python は tk を含まないことがあります）。</p>
-<p class="source-line" data-source-line="346"><strong>Q：パッケージ版の exe で <code>--cli</code> が何も出力しない</strong><br>
+<p class="source-line" data-source-line="351"><strong>Q：パッケージ版の exe で <code>--cli</code> が何も出力しない</strong><br>
 <code>console=False</code> の exe はダブルクリックではコンソールがありません。cmd / PowerShell から実行するか、<br>
 <code>-o</code> で出力ファイルを指定してください。Git Bash / MinTTY は pty のため Win32 コンソールに接続できません。</p>
-<p class="source-line" data-source-line="350"><strong>Q：Premiere の <code>.xml</code> は抽出できますか？</strong><br>
+<p class="source-line" data-source-line="355"><strong>Q：Premiere の <code>.xml</code> は抽出できますか？</strong><br>
 できます。ファイル選択時に <code>.xml</code> を選ぶだけです。</p>
-<p class="source-line" data-source-line="353"><strong>Q：Audition の <code>.sesx</code> は抽出できますか？</strong><br>
+<p class="source-line" data-source-line="358"><strong>Q：Audition の <code>.sesx</code> は抽出できますか？</strong><br>
 できます。<code>.prproj</code> と同じようにドラッグするだけです。<code>.sesx</code> はプレーンテキストの XML で、パスは<br>
 <code>&lt;file&gt;</code> 要素の <code>absolutePath</code> <strong>属性</strong>に書かれています（子タグではありません）。相対パスは<br>
 <code>relativePath</code> にあります。ツールは両方を読み、さらに絶対パスの正規表現を最後の手段として使い、<br>
 文字コードは UTF-8 / GB18030 / UTF-16 を順に試します。<br>
 Audition には Premiere のような「プロジェクトフォルダ」が無いため、一覧は<strong>素材のあるディレクトリ</strong>で<br>
 グループ化します。</p>
-<p class="source-line" data-source-line="361"><strong>Q：<code>.sesx</code> を抽出すると空になります</strong><br>
+<p class="source-line" data-source-line="366"><strong>Q：<code>.sesx</code> を抽出すると空になります</strong><br>
 以前のバージョンは <code>&lt;filePath&gt;</code> 子タグだけを走査していましたが、実際の Audition セッションは<br>
 <code>absolutePath</code> 属性を使うため 1 件も読めませんでした —— v1.0.0 で修正済みです。それでも空の場合は、<br>
 考えられる原因（外部素材を参照していない / 未対応形式 / ファイル破損）を明示するダイアログが出ます。</p>
-<p class="source-line" data-source-line="366"><strong>Q：Audition の <code>.sesx</code> は書き換えできますか？</strong><br>
+<p class="source-line" data-source-line="371"><strong>Q：Audition の <code>.sesx</code> は書き換えできますか？</strong><br>
 できます。<code>&lt;file&gt;</code> 開始タグ内の <code>absolutePath</code> 属性値だけを置換し、<code>id</code>・要素の順序・インデント・<br>
 コメント・改行コードはすべて保持します。UTF-8 BOM も書き戻します。<code>relativePath</code> は新しい場所に<br>
 合わせて再計算し、新しいファイルがセッションフォルダの外に出る場合はこの属性を削除します ——<br>
 古い相対パスを残すと Audition 側で食い違うためです。<br>
 実際のセッションで検証済み：6 件のパスすべて一致し、書き換え後も再解析でき、<code>id</code> は 1 つも変わりません。</p>
-<p class="source-line" data-source-line="373"><strong>Q：プロジェクトファイルを書き換えられますか？</strong><br>
+<p class="source-line" data-source-line="378"><strong>Q：プロジェクトファイルを書き換えられますか？</strong><br>
 抽出・比較・集計はいずれも読み取り専用です。書き換えは「新しいファイルを書き出す」を押したとき、<br>
 または「書き換え後のプロジェクトも保存」にチェックしたときだけ発生し、必ず新しいパスに書き出します。<br>
 手動で元のプロジェクトを選んでもブロックされます。</p>
-<p class="source-line" data-source-line="378"><strong>Q：「アップデートを確認」はどう動きますか？</strong><br>
+<p class="source-line" data-source-line="383"><strong>Q：「アップデートを確認」はどう動きますか？</strong><br>
 GitHub API から最新 Release タグを読み、つながらない場合は Gitee に切り替えて、ビルドに埋め込まれた<br>
 バージョンと比較します。リリース時のタグは <code>v&lt;APP_VER&gt;</code> なので、比較は純粋な数値比較です。<br>
 自動ダウンロードや自動インストールは行いません。ウィンドウには各プラットフォームのダウンロード先が<br>
 表示されるだけです。</p>
 <hr>
-<h2 id="ライセンス" class="source-line" data-source-line="386">ライセンス<a class="vx-header-anchor" href="#ライセンス" vx-data-anchor-icon="¶"></a></h2>
-<p class="source-line" data-source-line="388"><a href="LICENSE">MIT</a></p>
-<p class="source-line" data-source-line="390">UI テーマの <a href="https://github.com/bvb6417/tkwebui">tkwebui</a> も MIT ライセンスで、プロジェクトに同梱しています。</p>
+<h2 id="ライセンス" class="source-line" data-source-line="391">ライセンス<a class="vx-header-anchor" href="#ライセンス" vx-data-anchor-icon="¶"></a></h2>
+<p class="source-line" data-source-line="393"><a href="LICENSE">MIT</a></p>
+<p class="source-line" data-source-line="395">UI テーマの <a href="https://github.com/bvb6417/tkwebui">tkwebui</a> も MIT ライセンスで、プロジェクトに同梱しています。</p>
 </div>
         </div>
     </div>

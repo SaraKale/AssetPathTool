@@ -667,7 +667,7 @@ var highlightItemOnlyInOutline = function(id) {
 
         <div id="post-content" class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
         <div id="vx-content" class="vx-constrain-image-width line-numbers"><h1 id="asset-path-tool" class="source-line" data-source-line="0">Asset Path Tool<a class="vx-header-anchor" href="#asset-path-tool" vx-data-anchor-icon="¶"></a></h1>
-<p class="source-line" data-source-line="2"><a href="README.html">English</a> | <a href="README_SC.html">简体中文</a> | <a href="README_TC.html">繁體中文</a> | <a href="README_JP.html">日本語</a></p>
+<p class="source-line" data-source-line="2"><a href="README.md">English</a> | <a href="README_SC.md">简体中文</a> | <a href="README_TC.md">繁體中文</a> | <a href="README_JP.md">日本語</a></p>
 <p class="source-line" data-source-line="4">Extract asset paths from <strong>Adobe Premiere Pro / After Effects / Audition</strong> projects — with comparison, redirection and usage statistics.</p>
 <figure><img src="image/Preview_EN.jpg" alt="" class="vx-image-view-image"></figure>
 <hr>
@@ -899,8 +899,15 @@ Results with a score of 85% or higher are checked automatically;</li>
 <li class="source-line" data-source-line="160">Once everything looks right, <strong>Export list</strong> for the path list, or <strong>Export new file</strong> to save a<br>
 rewritten copy of the project (<strong>the original is never overwritten</strong>).</li>
 </ol>
-<p class="source-line" data-source-line="163"><strong>Export buttons</strong> (top right, left to right):</p>
-<table class="source-line" data-source-line="165">
+<blockquote>
+<p class="source-line" data-source-line="163"><strong>Rules only apply to the project you loaded.</strong> Load a different project and the table shows that<br>
+project's own paths — the previous rule set is never applied behind your back. The rules stay in<br>
+the rule list; click <strong>Apply rules</strong> again if you want to reuse them.<br>
+If the current project has hand-picked locations, switching projects asks first — those picks<br>
+belong to the project you picked them for.</p>
+</blockquote>
+<p class="source-line" data-source-line="169"><strong>Export buttons</strong> (top right, left to right):</p>
+<table class="source-line" data-source-line="171">
 <thead>
 <tr>
 <th>Button</th>
@@ -922,39 +929,39 @@ rewritten copy of the project (<strong>the original is never overwritten</strong
 </tr>
 </tbody>
 </table>
-<p class="source-line" data-source-line="171"><strong>The "Find missing…" window has a context menu too</strong>: <code>Use this suggestion</code> / <code>Choose new location…</code> /<br>
+<p class="source-line" data-source-line="177"><strong>The "Find missing…" window has a context menu too</strong>: <code>Use this suggestion</code> / <code>Choose new location…</code> /<br>
 <code>Show in Explorer</code>. "Use this suggestion" applies only the row you right-clicked; "Choose new location…"<br>
 bypasses matching and lets you pick a file directly; "Show in Explorer" opens the folder with the file selected.</p>
-<p class="source-line" data-source-line="175">Besides the asset name and score, the results table also lists the candidate's <strong>size</strong> and<br>
+<p class="source-line" data-source-line="181">Besides the asset name and score, the results table also lists the candidate's <strong>size</strong> and<br>
 <strong>modification time</strong> — same name, different versions is far too common (4K remaster, compressed copy,<br>
 exported twice), and file name plus score alone can't tell them apart. Those two columns settle it at a glance.</p>
 <blockquote>
-<p class="source-line" data-source-line="179"><strong>Click "Apply to Remap" with no rows selected = apply everything</strong> (best candidate per asset).<br>
+<p class="source-line" data-source-line="185"><strong>Click "Apply to Remap" with no rows selected = apply everything</strong> (best candidate per asset).<br>
 To change only some of them, <code>Ctrl</code> / <code>Shift</code>-select those rows first.</p>
-<p class="source-line" data-source-line="182">A missing asset can produce several candidates (short names especially — anything sharing a series<br>
-). Those aren't duplicate rows, they're alternatives for the same<br>
+<p class="source-line" data-source-line="188">A missing asset can produce several candidates (short names especially — anything sharing a series<br>
+Those aren't duplicate rows, they're alternatives for the same<br>
 asset. "Keep only the best candidate per asset" is on by default and hides the low scorers; untick it to<br>
 see them all, with the 2nd and later rows of the same asset labelled <code>└ alt</code> and grouped together.</p>
-<p class="source-line" data-source-line="187">The <code>☐</code> in the first column scopes the "Find missing…" run: if any rows are checked only those are<br>
+<p class="source-line" data-source-line="193">The <code>☐</code> in the first column scopes the "Find missing…" run: if any rows are checked only those are<br>
 processed, otherwise the selected rows, and if neither, every missing asset.</p>
-<p class="source-line" data-source-line="190">Three buttons handle bulk checking:</p>
+<p class="source-line" data-source-line="196">Three buttons handle bulk checking:</p>
 <ul>
-<li class="source-line" data-source-line="191"><strong>Check</strong> — ticks the rows currently selected with <code>Ctrl</code> / <code>Shift</code>;</li>
-<li class="source-line" data-source-line="192"><strong>Select all</strong> — ticks the rows <strong>visible</strong> after the current "Show" filter (filtered-out rows are left alone);</li>
-<li class="source-line" data-source-line="193"><strong>Clear all</strong> — clears <strong>including the filtered-out rows</strong>, so nothing is left behind.</li>
+<li class="source-line" data-source-line="197"><strong>Check</strong> — ticks the rows currently selected with <code>Ctrl</code> / <code>Shift</code>;</li>
+<li class="source-line" data-source-line="198"><strong>Select all</strong> — ticks the rows <strong>visible</strong> after the current "Show" filter (filtered-out rows are left alone);</li>
+<li class="source-line" data-source-line="199"><strong>Clear all</strong> — clears <strong>including the filtered-out rows</strong>, so nothing is left behind.</li>
 </ul>
-<p class="source-line" data-source-line="195">"Clear manual override" clears <strong>manually assigned new paths</strong> (the ones set by double-click / context<br>
+<p class="source-line" data-source-line="201">"Clear manual override" clears <strong>manually assigned new paths</strong> (the ones set by double-click / context<br>
 menu). Those rows go back to being computed from the rules — it has nothing to do with checkboxes or filters.</p>
 </blockquote>
 <blockquote>
-<p class="source-line" data-source-line="198">⚠️ Back up your project before rewriting. The output is always a new file; not a single byte of the<br>
+<p class="source-line" data-source-line="204">⚠️ Back up your project before rewriting. The output is always a new file; not a single byte of the<br>
 original is touched.</p>
 </blockquote>
-<h3 id="④-usage" class="source-line" data-source-line="201">④ Usage<a class="vx-header-anchor" href="#④-usage" vx-data-anchor-icon="¶"></a></h3>
-<p class="source-line" data-source-line="203">Pick a <code>.prproj</code> → <strong>Compute</strong>. The badges give you total assets / used / never used / sequence count /<br>
+<h3 id="④-usage" class="source-line" data-source-line="207">④ Usage<a class="vx-header-anchor" href="#④-usage" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="209">Pick a <code>.prproj</code> → <strong>Compute</strong>. The badges give you total assets / used / never used / sequence count /<br>
 total timeline duration.</p>
-<p class="source-line" data-source-line="206">The <strong>View</strong> switch in the top right:</p>
-<table class="source-line" data-source-line="208">
+<p class="source-line" data-source-line="212">The <strong>View</strong> switch in the top right:</p>
+<table class="source-line" data-source-line="214">
 <thead>
 <tr>
 <th>View</th>
@@ -976,18 +983,18 @@ total timeline duration.</p>
 </tr>
 </tbody>
 </table>
-<p class="source-line" data-source-line="214">"By folder" is the most practical one: when the disk is filling up, see which folder eats the most and how<br>
+<p class="source-line" data-source-line="220">"By folder" is the most practical one: when the disk is filling up, see which folder eats the most and how<br>
 much of it was never used (in one measured 1152-asset project, a single folder with 42 assets took 194 GB).<br>
 The <strong>Show</strong> filter applies to the summary views too, so you can look at "never used" groups only.</p>
-<p class="source-line" data-source-line="218"><strong>Dragging a folder</strong>: drop a folder onto the "Find missing…" window and it fills the search directory;<br>
+<p class="source-line" data-source-line="224"><strong>Dragging a folder</strong>: drop a folder onto the "Find missing…" window and it fills the search directory;<br>
 if that window isn't open, dropping a folder on the main window forwards it there (or tells you to open it first).</p>
 <hr>
-<h2 id="languages" class="source-line" data-source-line="223">Languages<a class="vx-header-anchor" href="#languages" vx-data-anchor-icon="¶"></a></h2>
-<p class="source-line" data-source-line="225">The interface ships in 简体中文, 繁體中文, English and 日本語. Switch any time from the dropdown in the top<br>
+<h2 id="languages" class="source-line" data-source-line="229">Languages<a class="vx-header-anchor" href="#languages" vx-data-anchor-icon="¶"></a></h2>
+<p class="source-line" data-source-line="231">The interface ships in 简体中文, 繁體中文, English and 日本語. Switch any time from the dropdown in the top<br>
 right — the window is <strong>not rebuilt</strong>, so paths in the inputs and data in the tables survive.</p>
-<p class="source-line" data-source-line="228">On first launch it reads the system UI language; after that it remembers your choice, and the config file<br>
+<p class="source-line" data-source-line="234">On first launch it reads the system UI language; after that it remembers your choice, and the config file<br>
 lives <strong>next to the program</strong> where you can find it:</p>
-<table class="source-line" data-source-line="231">
+<table class="source-line" data-source-line="237">
 <thead>
 <tr>
 <th>How you run it</th>
@@ -1009,18 +1016,18 @@ lives <strong>next to the program</strong> where you can find it:</p>
 </tr>
 </tbody>
 </table>
-<p class="source-line" data-source-line="237">It's a portable app at heart, so <strong>copy the whole folder to another machine and the language setting comes<br>
+<p class="source-line" data-source-line="243">It's a portable app at heart, so <strong>copy the whole folder to another machine and the language setting comes<br>
 with it</strong>. To go back to "follow the system", delete the file and start again.</p>
-<p class="source-line" data-source-line="240">To add a language: add a row to <code>LANGS</code> in <code>src/i18n.py</code>, then append one column to every entry in <code>_T</code>.</p>
+<p class="source-line" data-source-line="246">To add a language: add a row to <code>LANGS</code> in <code>src/i18n.py</code>, then append one column to every entry in <code>_T</code>.</p>
 <hr>
-<h2 id="building" class="source-line" data-source-line="244">Building<a class="vx-header-anchor" href="#building" vx-data-anchor-icon="¶"></a></h2>
-<h3 id="locally" class="source-line" data-source-line="246">Locally<a class="vx-header-anchor" href="#locally" vx-data-anchor-icon="¶"></a></h3>
-<div class="code-toolbar"><pre class="language-bash line-numbers"><code class="source-line language-bash" data-source-line="248">pip <span class="token function">install</span> pyinstaller
+<h2 id="building" class="source-line" data-source-line="250">Building<a class="vx-header-anchor" href="#building" vx-data-anchor-icon="¶"></a></h2>
+<h3 id="locally" class="source-line" data-source-line="252">Locally<a class="vx-header-anchor" href="#locally" vx-data-anchor-icon="¶"></a></h3>
+<div class="code-toolbar"><pre class="language-bash line-numbers"><code class="source-line language-bash" data-source-line="254">pip <span class="token function">install</span> pyinstaller
 pyinstaller AssetPathTool.spec --noconfirm
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
-<p class="source-line" data-source-line="253">The output lands in <code>dist/AssetPathTool/</code>.</p>
-<p class="source-line" data-source-line="255">A few key points in the <code>.spec</code>:</p>
-<table class="source-line" data-source-line="257">
+<p class="source-line" data-source-line="259">The output lands in <code>dist/AssetPathTool/</code>.</p>
+<p class="source-line" data-source-line="261">A few key points in the <code>.spec</code>:</p>
+<table class="source-line" data-source-line="263">
 <thead>
 <tr>
 <th>Item</th>
@@ -1056,19 +1063,19 @@ pyinstaller AssetPathTool.spec --noconfirm
 </tr>
 </tbody>
 </table>
-<h3 id="github-actions" class="source-line" data-source-line="265">GitHub Actions<a class="vx-header-anchor" href="#github-actions" vx-data-anchor-icon="¶"></a></h3>
-<p class="source-line" data-source-line="267"><code>.github/workflows/build-app.yml</code> is ready to go, with a six-platform matrix:</p>
-<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="269">Windows x64 / Windows ARM64 / macOS Intel / macOS ARM64 / Linux x64 / Linux ARM64
+<h3 id="github-actions" class="source-line" data-source-line="271">GitHub Actions<a class="vx-header-anchor" href="#github-actions" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="273"><code>.github/workflows/build-app.yml</code> is ready to go, with a six-platform matrix:</p>
+<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="275">Windows x64 / Windows ARM64 / macOS Intel / macOS ARM64 / Linux x64 / Linux ARM64
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
-<p class="source-line" data-source-line="273">How to trigger it:</p>
+<p class="source-line" data-source-line="279">How to trigger it:</p>
 <ul>
-<li class="source-line" data-source-line="275"><strong>Push a tag</strong>: <code>git tag v1.0.0 &amp;&amp; git push origin v1.0.0</code> → builds and creates a <strong>Draft Release</strong>;</li>
-<li class="source-line" data-source-line="276"><strong>Manually</strong>: Actions page → Build Asset Path Tool → Run workflow, put the version in <code>release_tag</code><br>
+<li class="source-line" data-source-line="281"><strong>Push a tag</strong>: <code>git tag v1.0.0 &amp;&amp; git push origin v1.0.0</code> → builds and creates a <strong>Draft Release</strong>;</li>
+<li class="source-line" data-source-line="282"><strong>Manually</strong>: Actions page → Build Asset Path Tool → Run workflow, put the version in <code>release_tag</code><br>
 (leave it empty to produce artifacts only, no Release).</li>
 </ul>
 <hr>
-<h2 id="project-layout" class="source-line" data-source-line="281">Project layout<a class="vx-header-anchor" href="#project-layout" vx-data-anchor-icon="¶"></a></h2>
-<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="283">AssetPathToolMain.py        Entry point (GUI / CLI dispatch)
+<h2 id="project-layout" class="source-line" data-source-line="287">Project layout<a class="vx-header-anchor" href="#project-layout" vx-data-anchor-icon="¶"></a></h2>
+<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="289">AssetPathToolMain.py        Entry point (GUI / CLI dispatch)
 AssetPathTool.spec          PyInstaller build config
 src/
   appinfo.py                App name / version / config location
@@ -1098,64 +1105,64 @@ src/
     update_win.py           The "Check for updates" window
 tkwebui/                    UI theme library (MIT, distributed with the project)
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
-<p class="source-line" data-source-line="315"><code>src/core/</code> never imports tkinter, so it works standalone in scripts and unit tests:</p>
-<div class="code-toolbar"><pre class="language-python line-numbers"><code class="source-line language-python" data-source-line="317"><span class="token keyword">from</span> src<span class="token punctuation">.</span>core<span class="token punctuation">.</span>loader <span class="token keyword">import</span> extract_any
+<p class="source-line" data-source-line="321"><code>src/core/</code> never imports tkinter, so it works standalone in scripts and unit tests:</p>
+<div class="code-toolbar"><pre class="language-python line-numbers"><code class="source-line language-python" data-source-line="323"><span class="token keyword">from</span> src<span class="token punctuation">.</span>core<span class="token punctuation">.</span>loader <span class="token keyword">import</span> extract_any
 <span class="token keyword">for</span> r <span class="token keyword">in</span> extract_any<span class="token punctuation">(</span><span class="token string">"project.prproj"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">[</span><span class="token string">"folder"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> r<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> r<span class="token punctuation">[</span><span class="token string">"exists"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
 <hr>
-<h2 id="notes" class="source-line" data-source-line="325">Notes<a class="vx-header-anchor" href="#notes" vx-data-anchor-icon="¶"></a></h2>
+<h2 id="notes" class="source-line" data-source-line="331">Notes<a class="vx-header-anchor" href="#notes" vx-data-anchor-icon="¶"></a></h2>
 <ul>
-<li class="source-line" data-source-line="327"><strong><code>.prproj</code> is gzip-compressed XML</strong> (magic <code>1f 8b</code>). The tool unpacks it for you; no manual steps.</li>
-<li class="source-line" data-source-line="328"><strong>Rewriting a <code>.prproj</code> only writes a new file</strong> — the original is never modified. Rewriting is still an<br>
+<li class="source-line" data-source-line="333"><strong><code>.prproj</code> is gzip-compressed XML</strong> (magic <code>1f 8b</code>). The tool unpacks it for you; no manual steps.</li>
+<li class="source-line" data-source-line="334"><strong>Rewriting a <code>.prproj</code> only writes a new file</strong> — the original is never modified. Rewriting is still an<br>
 experimental feature, so <strong>please back up first</strong>, and open the result in Premiere to confirm every asset is online.</li>
-<li class="source-line" data-source-line="330"><strong>Whether an asset "exists" depends on the machine running the tool.</strong> A list produced on computer A will<br>
+<li class="source-line" data-source-line="336"><strong>Whether an asset "exists" depends on the machine running the tool.</strong> A list produced on computer A will<br>
 show different missing counts on computer B. That's expected.</li>
-<li class="source-line" data-source-line="332"><strong>Large projects take time.</strong> Parsing 1000+ assets takes about 1–2 seconds; "Find missing…" scanning an<br>
+<li class="source-line" data-source-line="338"><strong>Large projects take time.</strong> Parsing 1000+ assets takes about 1–2 seconds; "Find missing…" scanning an<br>
 asset drive with hundreds of thousands of files takes longer, and the tool will ask you to narrow the scope first.</li>
-<li class="source-line" data-source-line="334"><strong><code>.aep</code> is read-only</strong>, see above. <code>.prproj</code> / <code>.sesx</code> can be saved as rewritten copies, but the<br>
+<li class="source-line" data-source-line="340"><strong><code>.aep</code> is read-only</strong>, see above. <code>.prproj</code> / <code>.sesx</code> can be saved as rewritten copies, but the<br>
 <strong>original file is never overwritten</strong>.</li>
-<li class="source-line" data-source-line="336"><strong>The config file</strong> is <code>AssetPathTool.config.json</code> next to the program. It only stores the UI language;<br>
+<li class="source-line" data-source-line="342"><strong>The config file</strong> is <code>AssetPathTool.config.json</code> next to the program. It only stores the UI language;<br>
 delete it to reset to defaults.</li>
 </ul>
-<h2 id="faq" class="source-line" data-source-line="339">FAQ<a class="vx-header-anchor" href="#faq" vx-data-anchor-icon="¶"></a></h2>
-<p class="source-line" data-source-line="341"><strong>Q: It says tkinter is missing.</strong><br>
+<h2 id="faq" class="source-line" data-source-line="345">FAQ<a class="vx-header-anchor" href="#faq" vx-data-anchor-icon="¶"></a></h2>
+<p class="source-line" data-source-line="347"><strong>Q: It says tkinter is missing.</strong><br>
 On Windows, reinstall from the <a href="http://python.org">python.org</a> installer and tick <code>tcl/tk and IDLE</code>; on Ubuntu run<br>
 <code>sudo apt install python3-tk</code>; on macOS use the <a href="http://python.org">python.org</a> build (brew's python sometimes ships without tk).</p>
-<p class="source-line" data-source-line="345"><strong>Q: The packaged exe prints nothing with <code>--cli</code>.</strong><br>
+<p class="source-line" data-source-line="351"><strong>Q: The packaged exe prints nothing with <code>--cli</code>.</strong><br>
 An exe built with <code>console=False</code> has no console when double-clicked. Run it from cmd / PowerShell, or use<br>
 <code>-o</code> to write to a file. Note that Git Bash / MinTTY is a pty and can't attach to the Win32 console.</p>
-<p class="source-line" data-source-line="349"><strong>Q: Can it extract Premiere's <code>.xml</code>?</strong><br>
+<p class="source-line" data-source-line="355"><strong>Q: Can it extract Premiere's <code>.xml</code>?</strong><br>
 Yes — just pick the <code>.xml</code> file.</p>
-<p class="source-line" data-source-line="352"><strong>Q: Can it extract Audition's <code>.sesx</code>?</strong><br>
+<p class="source-line" data-source-line="358"><strong>Q: Can it extract Audition's <code>.sesx</code>?</strong><br>
 Yes, drag it in exactly like a <code>.prproj</code>. <code>.sesx</code> is plain-text XML where the path lives in the<br>
 <code>absolutePath</code> <strong>attribute</strong> of the <code>&lt;file&gt;</code> element (not a child tag), with the relative path in<br>
 <code>relativePath</code>. The tool reads both, plus an absolute-path regex as a last resort, and tries UTF-8 /<br>
 GB18030 / UTF-16 encodings. Audition has no "project folders" like Premiere, so the list groups by<br>
 <strong>the asset's own directory</strong>.</p>
-<p class="source-line" data-source-line="359"><strong>Q: <code>.sesx</code> extraction comes back empty?</strong><br>
+<p class="source-line" data-source-line="365"><strong>Q: <code>.sesx</code> extraction comes back empty?</strong><br>
 Early versions only scanned the <code>&lt;filePath&gt;</code> child tag, while real Audition sessions use the<br>
 <code>absolutePath</code> attribute, so nothing was found — fixed in v1.0.0. If it's still empty, the tool pops up an<br>
 explicit explanation (project references no external assets / unsupported format / corrupted file).</p>
-<p class="source-line" data-source-line="364"><strong>Q: Can Audition's <code>.sesx</code> be rewritten?</strong><br>
+<p class="source-line" data-source-line="370"><strong>Q: Can Audition's <code>.sesx</code> be rewritten?</strong><br>
 Yes. Only the <code>absolutePath</code> attribute value inside the <code>&lt;file&gt;</code> open tag is replaced; <code>id</code>, element order,<br>
 indentation, comments and line endings are all preserved, and the UTF-8 BOM is written back.<br>
 <code>relativePath</code> is recomputed for the new location; if the new file lands outside the session folder the<br>
 attribute is dropped — keeping the stale relative path only makes Audition fight itself.<br>
 Tested against a real session: all 6 paths hit, the result parses again, and not a single <code>id</code> changed.</p>
-<p class="source-line" data-source-line="371"><strong>Q: Will it modify my project files?</strong><br>
+<p class="source-line" data-source-line="377"><strong>Q: Will it modify my project files?</strong><br>
 Extract, compare and usage are all read-only. Rewriting only happens on "Export new file" or when<br>
 "also save the rewritten project" is ticked, and it always writes to a new path — even if you pick the<br>
 original, it's blocked.</p>
-<p class="source-line" data-source-line="376"><strong>Q: How does "Check for updates" work?</strong><br>
+<p class="source-line" data-source-line="382"><strong>Q: How does "Check for updates" work?</strong><br>
 It reads the newest release tag from the GitHub API, falls back to Gitee when GitHub is unreachable, and<br>
 compares it against the version baked into the build. Each release tag is <code>v&lt;APP_VER&gt;</code>, so the comparison<br>
 is purely numeric. Nothing is downloaded or installed automatically — the window just gives you the<br>
 download mirrors.</p>
 <hr>
-<h2 id="license" class="source-line" data-source-line="384">License<a class="vx-header-anchor" href="#license" vx-data-anchor-icon="¶"></a></h2>
-<p class="source-line" data-source-line="386"><a href="LICENSE">MIT</a></p>
-<p class="source-line" data-source-line="388">The UI theme <a href="https://github.com/bvb6417/tkwebui">tkwebui</a> is MIT-licensed as well and is distributed<br>
+<h2 id="license" class="source-line" data-source-line="390">License<a class="vx-header-anchor" href="#license" vx-data-anchor-icon="¶"></a></h2>
+<p class="source-line" data-source-line="392"><a href="LICENSE">MIT</a></p>
+<p class="source-line" data-source-line="394">The UI theme <a href="https://github.com/bvb6417/tkwebui">tkwebui</a> is MIT-licensed as well and is distributed<br>
 together with the project.</p>
 </div>
         </div>
