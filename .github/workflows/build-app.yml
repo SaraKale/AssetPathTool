@@ -1,0 +1,290 @@
+name: Build Asset Path Tool
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Release New version"
+        required: false
+        type: string
+        default: ""
+
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: Windows x64
+            os: windows-latest
+            arch_name: windows-x64
+          - label: Windows ARM
+            os: windows-11-arm
+            arch_name: windows-arm64
+          - label: macOS Intel
+            os: macos-15-intel
+            arch_name: macos-x64
+          - label: macOS ARM
+            os: macos-latest
+            arch_name: macos-arm64
+          - label: Linux x64
+            os: ubuntu-latest
+            arch_name: linux-x64
+          - label: Linux ARM
+            os: ubuntu-24.04-arm
+            arch_name: linux-arm64
+
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      # release_tag 是手填的输入框，很容易把「版本号 + 说明」整句粘进去。
+      # 一旦含冒号 : 就会连环炸：Windows 上 PowerShell 会把它当盘符，
+      # upload-artifact 也明确禁止产物名含 : " < > | * ? \ / 和换行。
+      # 这里统一算一个只含 [A-Za-z0-9._-] 的安全值，专供产物名用；
+      # 真正用于发布 Release 的 tag 仍是原始值。
+      - name: Resolve artifact tag
+        id: rel
+        shell: bash
+        env:
+          RAW_TAG: ${{ inputs.release_tag || github.ref_name }}
+        run: |
+          safe=$(printf '%s' "$RAW_TAG" \
+            | tr -c 'A-Za-z0-9._-' '-' \
+            | sed -e 's/-\{2,\}/-/g' -e 's/^[-.]*//' -e 's/[-.]*$//')
+          if [ -z "$safe" ]; then safe="build-${GITHUB_RUN_NUMBER}"; fi
+          printf 'raw  = %s\n' "$RAW_TAG"
+          printf 'safe = %s\n' "$safe"
+          echo "tag=$safe" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      # tkinter 在 Linux 上要单独装；macOS / Windows 的官方 Python 自带
+      - name: Install Tkinter (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-tk
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+
+      - name: Build with PyInstaller
+        shell: bash
+        run: |
+          pyinstaller "AssetPathTool.spec" --noconfirm --clean
+
+      # 把使用说明和 README 配图塞进产物：
+      # Windows / Linux → dist/AssetPathTool/（与 exe 同级，跟 _internal 并排）
+      # macOS → .app 旁边（不写进 .app 内部，避免破坏其临时签名）
+      - name: Bundle docs and images
+        shell: bash
+        run: |
+          set -eo pipefail
+
+          if [ "$RUNNER_OS" = "macOS" ]; then
+            out=dist
+          else
+            out=dist/AssetPathTool
+          fi
+
+          # 目录必须先建。cp 多个文件到一个不存在的路径会直接报
+          # "cp: target '.../image' is not a directory" 并中断整个 job，
+          # 不是"自动建目录"。
+          mkdir -p "$out/image"
+
+          # 用循环而不是 cp image/*.jpg：通配符没匹配到时 bash 不展开，
+          # 会把字面量 "image/*.jpg" 交给 cp，直接失败。循环里跳过即可。
+          n=0
+          for f in image/*.jpg; do
+            [ -e "$f" ] || continue
+            cp -v "$f" "$out/image/"
+            n=$((n + 1))
+          done
+          echo "image: $n 个文件"
+
+          # DocumentHtml/ 目前是空的（说明还没生成）。同理，空目录时
+          # 直接 cp DocumentHtml/*.html 会让 job 失败，所以允许 0 个。
+          m=0
+          for f in DocumentHtml/*.html; do
+            [ -e "$f" ] || continue
+            cp -v "$f" "$out/"
+            m=$((m + 1))
+          done
+          if [ "$m" -eq 0 ]; then
+            echo "::warning::DocumentHtml/ 里没有 .html，本次产物不带使用说明"
+          else
+            echo "docs: $m 个文件"
+          fi
+
+      - name: Archive artifacts (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Compress-Archive `
+            -Path dist/AssetPathTool `
+            -DestinationPath "AssetPathTool-${{ steps.rel.outputs.tag }}-${{ matrix.arch_name }}.zip"
+
+      - name: Archive artifacts (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          cd dist
+          zip -r "../AssetPathTool-${{ steps.rel.outputs.tag }}-${{ matrix.arch_name }}.zip" AssetPathTool
+
+      - name: Archive artifacts (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          cd dist
+          # 原来写的是 "... AssetPathTool.app docs"，但 docs 这个目录从来没被
+          # 创建过（使用说明是散在 dist/ 根下的 .html），zip 只会给一句
+          # "name not matched" 警告然后照常退出 —— macOS 包里一直没有说明文件。
+          # 这里改成把根下的 *.html 一起收进去，配图目录也别漏。
+          set -- AssetPathTool.app image
+          for f in *.html; do
+            [ -e "$f" ] || continue
+            set -- "$@" "$f"
+          done
+          zip -r -y "../AssetPathTool-${{ steps.rel.outputs.tag }}-${{ matrix.arch_name }}.zip" "$@"
+
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: AssetPathTool-${{ steps.rel.outputs.tag }}-${{ matrix.arch_name }}
+          path: AssetPathTool-${{ steps.rel.outputs.tag }}-${{ matrix.arch_name }}.zip
+          if-no-files-found: error
+
+  release:
+    name: Release
+    needs: build
+
+    if: >
+      github.ref_type == 'tag' ||
+      (
+        github.event_name == 'workflow_dispatch' &&
+        inputs.release_tag != ''
+      )
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: release-artifacts
+          merge-multiple: true
+
+      # ========================================
+      # 正常 Tag 发布
+      # ========================================
+      - name: Create or update Release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v3
+        with:
+          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          files: release-artifacts/*.zip
+
+          # 第一次创建时保持 Draft，发布前可以到 Release 页面检查
+          draft: true
+          generate_release_notes: true
+          prerelease: false
+          overwrite_files: true
+
+          append_body: false
+          body: |
+            ## Download
+
+            | Platform | Architecture | File |
+            |------|------|------|
+            | **Windows** | x64 | [AssetPathTool-${{ github.ref_name }}-windows-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/AssetPathTool-${{ github.ref_name }}-windows-x64.zip) |
+            | **Windows** | ARM64 | [AssetPathTool-${{ github.ref_name }}-windows-arm64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/AssetPathTool-${{ github.ref_name }}-windows-arm64.zip) |
+            | **macOS** | Intel (x64) | [AssetPathTool-${{ github.ref_name }}-macos-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/AssetPathTool-${{ github.ref_name }}-macos-x64.zip) |
+            | **macOS** | Apple Silicon (ARM64) | [AssetPathTool-${{ github.ref_name }}-macos-arm64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/AssetPathTool-${{ github.ref_name }}-macos-arm64.zip) |
+            | **Linux** | x64 | [AssetPathTool-${{ github.ref_name }}-linux-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/AssetPathTool-${{ github.ref_name }}-linux-x64.zip) |
+            | **Linux** | ARM64 | [AssetPathTool-${{ github.ref_name }}-linux-arm64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/AssetPathTool-${{ github.ref_name }}-linux-arm64.zip) |
+
+            > Windows users pick x64 (most computers); macOS users pick ARM64 (M1/M2/M3/M4).
+            > Windows 用户选 x64（绝大多数电脑），macOS 用户选 ARM64（M 系列芯片）。
+            > Windows 用戶選 x64（絕大多數電腦），macOS 用戶選 ARM64（M 系列晶片）。
+            > Windows ユーザーは x64（ほとんどの PC）、macOS ユーザーは ARM64（M シリーズ）を選んでください。
+
+      # ========================================
+      # 手动更新已有 Release
+      # ========================================
+      # 加 github.ref_type != 'tag'：在 tag ref 上手动触发时，上面那步已经
+      # 按 github.ref_name 建/更新 Release，这里再跑一次会两边动同一个
+      # Release、互相打架。互斥更清楚。
+      - name: Update existing Release
+        if: >
+          github.ref_type != 'tag' &&
+          github.event_name == 'workflow_dispatch' &&
+          inputs.release_tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload \
+            "${{ inputs.release_tag }}" \
+            release-artifacts/*.zip \
+            --repo "${{ github.repository }}" \
+            --clobber
+
+      - name: Update Release description
+        if: >
+          github.ref_type != 'tag' &&
+          github.event_name == 'workflow_dispatch' &&
+          inputs.release_tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          REPO: ${{ github.repository }}
+        run: |
+          # 与 build job 完全一致的消毒逻辑
+          safe=$(printf '%s' "$RELEASE_TAG" \
+            | tr -c 'A-Za-z0-9._-' '-' \
+            | sed -e 's/-\{2,\}/-/g' -e 's/^[-.]*//' -e 's/[-.]*$//')
+          if [ -z "$safe" ]; then safe="build-${GITHUB_RUN_NUMBER}"; fi
+
+          cat > /tmp/body.md <<EOF
+          ## Download
+
+          | Platform | Architecture | File |
+          |------|------|------|
+          | **Windows** | x64 | [AssetPathTool-${safe}-windows-x64.zip](https://github.com/${REPO}/releases/download/${RELEASE_TAG}/AssetPathTool-${safe}-windows-x64.zip) |
+          | **Windows** | ARM64 | [AssetPathTool-${safe}-windows-arm64.zip](https://github.com/${REPO}/releases/download/${RELEASE_TAG}/AssetPathTool-${safe}-windows-arm64.zip) |
+          | **macOS** | Intel (x64) | [AssetPathTool-${safe}-macos-x64.zip](https://github.com/${REPO}/releases/download/${RELEASE_TAG}/AssetPathTool-${safe}-macos-x64.zip) |
+          | **macOS** | Apple Silicon (ARM64) | [AssetPathTool-${safe}-macos-arm64.zip](https://github.com/${REPO}/releases/download/${RELEASE_TAG}/AssetPathTool-${safe}-macos-arm64.zip) |
+          | **Linux** | x64 | [AssetPathTool-${safe}-linux-x64.zip](https://github.com/${REPO}/releases/download/${RELEASE_TAG}/AssetPathTool-${safe}-linux-x64.zip) |
+          | **Linux** | ARM64 | [AssetPathTool-${safe}-linux-arm64.zip](https://github.com/${REPO}/releases/download/${RELEASE_TAG}/AssetPathTool-${safe}-linux-arm64.zip) |
+
+          > Windows: x64 (most computers) · macOS: ARM64 (M1/M2/M3/M4)
+          > Windows：x64（绝大多数电脑） · macOS：ARM64（M 系列芯片）
+          > Windows：x64（絕大多數電腦） · macOS：ARM64（M 系列晶片）
+          > Windows：x64（ほとんどの PC） · macOS：ARM64（M シリーズ）
+          EOF
+
+          gh release edit "$RELEASE_TAG" \
+            --repo "$REPO" \
+            --notes-file /tmp/body.md

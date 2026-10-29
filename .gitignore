@@ -1,0 +1,64 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+
+# ---- PyInstaller ----
+*.spec.bak
+build/version_info.txt
+
+# ---- 打包产物 ----
+*.zip
+*.7z
+
+# ---- 编辑器 ----
+.vscode/
+.idea/
+*.swp
+*~
+
+# ---- 系统 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- 本项目：素材 / 工程文件 / 输出 ----
+# 这些是本地测试用的，不该进仓库
+*.prproj
+*.aep
+*.aepx
+*.sesx
+*.prtl
+*.xml
+Adobe Premiere Pro Auto-Save/
+Adobe Premiere Pro Captured Video/
+
+# 本机配置（界面语言），跟程序放一起，但不要提交
+AssetPathTool.config.json
+
+# 工具产出的清单
+*_素材路径.txt
+*_素材路径.csv
+*_重定向.txt
+*_重定向.csv
+*_重定向.prproj
+*_对比结果.txt
+*_对比结果.csv
+*_使用统计.csv
+
+# ---- 开发期临时文件 ----
+_shot.py
+_shot*.png
+_*.png
+_*.bmp
+_p*.png
+_full.png

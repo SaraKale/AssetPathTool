@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="VNote">
+
+    <title>README_SC</title>
+
+    <style type="text/css">
+    div.code-toolbar > div.toolbar {
+    display: none;
+}
+
+    </style>
+
+    <style type="text/css">
+    *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-12 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .col-md-3 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+
+@media (min-width: 768px) {
+    .col-md-9 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 75%;
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-2 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 16.666667%;
+        flex: 0 0 16.666667%;
+        max-width: 16.666667%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-10 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 83.333333%;
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+    }
+}
+
+@media (min-width: 768px) {
+    .pt-md-3, .py-md-3 {
+        padding-top: 1rem!important;
+    }
+}
+
+@media (min-width: 768px) {
+    .pb-md-3, .py-md-3 {
+        padding-bottom: 1rem!important;
+    }
+}
+
+@media (min-width: 768px) {
+    .pl-md-5, .px-md-5 {
+        padding-left: 3rem!important;
+    }
+}
+
+.d-none {
+    display: none!important;
+}
+
+@media (min-width: 1200px) {
+    .d-xl-block {
+        display: block!important;
+    }
+}
+
+@media (min-width: 768px) {
+    .d-md-block {
+        display: block!important;
+    }
+}
+
+.bd-content {
+    -webkit-box-ordinal-group: 1;
+    -ms-flex-order: 0;
+    order: 0;
+}
+
+.bd-toc {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
+    height: calc(100vh - 10rem);
+    overflow-y: auto;
+}
+
+.bd-toc {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: .875rem;
+}
+
+.section-nav {
+    padding-left: 0;
+}
+
+.section-nav ul {
+    font-size: .875rem;
+    list-style-type: none;
+}
+
+.section-nav li {
+    font-size: .875rem;
+}
+
+.section-nav a {
+    color: inherit !important;
+    white-space: nowrap;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+@media (min-width: 1200px) {
+    .flex-xl-nowrap {
+        flex-wrap: nowrap !important;
+    }
+}
+
+#floating-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: #00897B;
+    position: fixed;
+    top: .5rem;
+    right: .5rem;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px #666;
+}
+
+#floating-button .more {
+    color: #F5F5F5;
+    position: absolute;
+    top: 0;
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 2.5rem;
+    font-size: 2rem;
+    font-family: 'monospace';
+    font-weight: 300;
+}
+
+.hide-none {
+    display: none !important;
+}
+
+.col-expand {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding-right: 3rem !important;
+}
+
+.outline-bold {
+    font-weight: bolder !important;
+}
+
+@media print {
+    #floating-button {
+        display: none !important;
+    }
+}
+
+
+    #vx-content.vx-section-number, #vx-content.vx-section-number-2 h1, #vx-content.vx-section-number-3 h1, #vx-content.vx-section-number-3 h2 { counter-reset: section1 0 section2 0 section3 0 section4 0 section5 0 section6 0; }
+#vx-content.vx-section-number-1 h1, #vx-content.vx-section-number-2 h2, #vx-content.vx-section-number-3 h3 { counter-reset: section2 0 section3 0 section4 0 seciton5 0 section6 0; }
+#vx-content.vx-section-number-1 h2, #vx-content.vx-section-number-2 h3, #vx-content.vx-section-number-3 h4 { counter-reset: section3 0 section4 0 section5 0 section6 0; }
+#vx-content.vx-section-number-1 h3, #vx-content.vx-section-number-2 h4, #vx-content.vx-section-number-3 h5 { counter-reset: section4 0 section5 0 section6 0; }
+#vx-content.vx-section-number-1 h4, #vx-content.vx-section-number-2 h5 { counter-reset: section5 0 section6 0; }
+#vx-content.vx-section-number-1 h5 { counter-reset: section6 0; }
+#vx-content.vx-section-number-1 h1::before, #vx-content.vx-section-number-2 h2::before, #vx-content.vx-section-number-3 h3::before { counter-increment: section1 1; content: counter(section1) ". "; }
+#vx-content.vx-section-number-1 h2::before, #vx-content.vx-section-number-2 h3::before, #vx-content.vx-section-number-3 h4::before { counter-increment: section2 1; content: counter(section1) "." counter(section2) ". "; }
+#vx-content.vx-section-number-1 h3::before, #vx-content.vx-section-number-2 h4::before, #vx-content.vx-section-number-3 h5::before { counter-increment: section3 1; content: counter(section1) "." counter(section2) "." counter(section3) ". "; }
+#vx-content.vx-section-number-1 h4::before, #vx-content.vx-section-number-2 h5::before, #vx-content.vx-section-number-3 h6::before { counter-increment: section4 1; content: counter(section1) "." counter(section2) "." counter(section3) "." counter(section4) ". "; }
+#vx-content.vx-section-number-1 h5::before, #vx-content.vx-section-number-2 h6::before { counter-increment: section5 1; content: counter(section1) "." counter(section2) "." counter(section3) "." counter(section4) "." counter(section5) ". "; }
+#vx-content.vx-section-number-1 h6::before { counter-increment: section6 1; content: counter(section1) "." counter(section2) "." counter(section3) "." counter(section4) "." counter(section5) "." counter(section6) ". "; }
+#vx-content.vx-constrain-image-width img, #vx-content.vx-constrain-image-width div.vx-plantuml-graph > svg, #vx-content.vx-constrain-image-width div.vx-mermaid-graph, #vx-content.vx-constrain-image-width div.vx-flowchartjs-graph, #vx-content.vx-constrain-image-width div.vx-wavedrom-graph { max-width: 100% !important; height: auto !important; }
+figure { margin: auto; }
+figcaption { font-style: italic; }
+#vx-content.vx-image-align-center figure { text-align: center; }
+#vx-content.vx-image-align-center figcaption { text-align: center; }
+#vx-content.vx-image-align-center div.vx-plantuml-graph, #vx-content.vx-image-align-center div.vx-mermaid-graph, #vx-content.vx-image-align-center div.vx-flowchartjs-graph, #vx-content.vx-image-align-center div.vx-wavedrom-graph { margin-left: auto; margin-right: auto; }
+.vx-table-of-contents ol { list-style: none; }
+#vx-content.vx-section-number-1 .vx-table-of-contents ol { counter-reset: toc 0; }
+#vx-content.vx-section-number-1 .vx-table-of-contents ol li { counter-increment: toc 1; }
+#vx-content.vx-section-number-1 .vx-table-of-contents ol li::before { content: counters(toc, ".") ". "; font-family: cursive; }
+#vx-content.vx-section-number-2 .vx-table-of-contents > ol > li ol { counter-reset: toc 0; }
+#vx-content.vx-section-number-2 .vx-table-of-contents > ol > li ol li { counter-increment: toc 1; }
+#vx-content.vx-section-number-2 .vx-table-of-contents > ol > li ol li::before { content: counters(toc, ".") ". "; font-family: cursive; }
+#vx-content.vx-section-number-3 .vx-table-of-contents > ol > li > ol > li ol { counter-reset: toc 0; }
+#vx-content.vx-section-number-3 .vx-table-of-contents > ol > li > ol > li ol li { counter-increment: toc 1; }
+#vx-content.vx-section-number-3 .vx-table-of-contents > ol > li > ol > li ol li::before { content: counters(toc, ".") ". "; font-family: cursive; }
+.vx-header-anchor { visibility: hidden; vertical-align: middle; }
+.vx-header-anchor::after { content: attr(vx-data-anchor-icon); }
+#vx-content h1:hover .vx-header-anchor, #vx-content h2:hover .vx-header-anchor, #vx-content h3:hover .vx-header-anchor, #vx-content h4:hover .vx-header-anchor, #vx-content h5:hover .vx-header-anchor, #vx-content h6:hover .vx-header-anchor { visibility: visible; vertical-align: middle; }
+#vx-content.vx-indent-first-line p { text-indent: 2em; }
+body.vx-transparent-background { background-color: transparent !important; }
+#vx-content.vx-nonscrollable pre { white-space: pre-wrap !important; word-break: break-all !important; overflow: hidden !important; }
+#vx-content.vx-nonscrollable pre code { white-space: pre-wrap !important; word-break: break-all !important; }
+#vx-content.vx-nonscrollable code, #vx-content.vx-nonscrollable a { word-break: break-all !important; }
+body { margin: 0px auto; font-family: "YaHei Consolas Hybrid", "Noto Sans", "Helvetica Neue", "Segoe UI", Helvetica, Tahoma, Arial, Geneva, Georgia, Palatino, "Times New Roman", 冬青黑体, "Microsoft YaHei", 微软雅黑, "Microsoft YaHei UI", "WenQuanYi Micro Hei", 文泉驿雅黑, Dengxian, 等线体, STXihei, 华文细黑, "Liberation Sans", "Droid Sans", NSimSun, 新宋体, SimSun, 宋体, "Apple Color Emoji", "Segoe UI Emoji"; color: rgb(52, 73, 94); line-height: 1.5; padding: 0px; background-color: rgb(255, 255, 255); font-size: 16px; }
+h1, h2, h3, h4, h5, h6 { color: rgb(52, 73, 94); font-weight: bold; margin-top: 20px; margin-bottom: 10px; padding: 0px; }
+p, blockquote, table { margin: 1.2em 0px; }
+ul, ol, dl { margin: 0.4em 0px; }
+p { padding: 0px; }
+h1 { padding-bottom: 0.4rem; font-size: 2.2rem; line-height: 1.3; }
+h2 { font-size: 1.75rem; line-height: 1.225; margin: 35px 0px 15px; padding-bottom: 0.5em; border-bottom: 1px solid rgb(221, 221, 221); }
+h3 { font-size: 1.4rem; line-height: 1.43; margin: 20px 0px 7px; }
+h4 { font-size: 1.2rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 1rem; color: rgb(119, 119, 119); }
+a { color: rgb(0, 153, 255); margin: 0px; padding: 0px; vertical-align: baseline; text-decoration: none; word-break: break-word; }
+a:hover { text-decoration: underline; }
+a:visited { color: rgb(128, 0, 128); }
+ul, ol { padding: 0px 0px 0px 24px; }
+li { line-height: 24px; }
+li ul, li ol { margin-left: 16px; }
+p, ul, ol { font-size: 16px; line-height: 24px; }
+pre { display: block; overflow: auto hidden; tab-size: 4; }
+code { font-family: "YaHei Consolas Hybrid", Consolas, Monaco, "Andale Mono", monospace, "Courier New"; color: rgb(233, 105, 0); padding: 0px 4px; margin: 4px 0px; border-radius: 2px; background-color: rgb(248, 248, 248); word-break: break-word; }
+:is(h1, h2, h3, h4, h5, h6) code { font-size: inherit; }
+pre code { display: block; padding-left: 0.5em; padding-right: 0.5em; color: rgb(52, 73, 94); background-color: rgb(224, 224, 224); line-height: 1.5; font-family: "YaHei Consolas Hybrid", Consolas, Monaco, "Andale Mono", monospace, "Courier New"; white-space: pre; tab-size: 4; }
+aside { display: block; float: right; width: 390px; }
+blockquote { color: rgb(102, 102, 102); border-left: 0.5em solid rgb(122, 122, 122); padding: 0px 1em; margin-left: 0px; }
+blockquote p { color: rgb(102, 102, 102); }
+hr { display: block; text-align: left; margin: 1em 0px; border: none; height: 1px; background-color: rgb(204, 204, 204); }
+table { padding: 0px; width: 100%; margin: 1rem 0px; border-collapse: collapse; }
+table tr { border-top: 1px solid rgb(204, 204, 204); background-color: white; margin: 0px; padding: 0px; }
+table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
+table tr th { font-weight: bold; border: 1px solid rgb(204, 204, 204); background-color: rgb(242, 242, 242); text-align: left; margin: 0px; padding: 6px 13px; }
+table tr td { border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px; }
+table tr th :first-child, table tr td :first-child { margin-top: 0px; }
+table tr th :last-child, table tr td :last-child { margin-bottom: 0px; }
+div.vx-mermaid-graph { margin: 16px 0px; overflow-y: hidden; }
+div.vx-flowchartjs-graph { padding: 0px 5px; margin: 16px 0px; width: fit-content; overflow: hidden; }
+div.vx-wavedrom-graph { padding: 0px 5px; margin: 16px 0px; width: fit-content; overflow: hidden; }
+div.vx-plantuml-graph { padding: 5px 5px 0px; margin: 16px 0px; width: fit-content; overflow: hidden; }
+::selection { background-color: rgb(25, 118, 210); color: rgb(255, 255, 255); }
+::-webkit-scrollbar { background-color: rgb(245, 245, 245); width: 14px; height: 14px; border: none; }
+::-webkit-scrollbar-corner { background-color: rgb(245, 245, 245); }
+::-webkit-scrollbar-button { height: 14px; width: 14px; background-color: rgb(245, 245, 245); }
+::-webkit-scrollbar-button:hover { background-color: rgb(218, 218, 218); }
+::-webkit-scrollbar-button:active { background-color: rgb(192, 192, 192); }
+::-webkit-scrollbar-track { background-color: rgb(245, 245, 245); }
+::-webkit-scrollbar-thumb { border: none; background-color: rgb(205, 205, 205); }
+::-webkit-scrollbar-thumb:hover { background-color: rgb(192, 192, 192); }
+::-webkit-scrollbar-thumb:active { background-color: rgb(187, 187, 187); }
+::-webkit-scrollbar-button:horizontal:increment { background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 12L31 24L19 36" stroke="%23222222" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>'); background-repeat: no-repeat; background-size: contain; }
+::-webkit-scrollbar-button:horizontal:decrement { background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M31 36L19 24L31 12" stroke="%23222222" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>'); background-repeat: no-repeat; background-size: contain; }
+::-webkit-scrollbar-button:vertical:increment { background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M36 18L24 30L12 18" stroke="%23222222" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>'); background-repeat: no-repeat; background-size: contain; }
+::-webkit-scrollbar-button:vertical:decrement { background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="UTF-8"?><svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 30L25 18L37 30" stroke="%23222222" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>'); background-repeat: no-repeat; background-size: contain; }
+#vx-content span.vx-search-match { color: rgb(34, 34, 34); background-color: rgb(77, 182, 172); }
+#vx-content span.vx-current-search-match { color: rgb(34, 34, 34); background-color: rgb(102, 187, 106); }
+#vx-content { margin: 0px auto; padding: 30px 30px 40px; }
+@media screen and (min-width: 1180px) {
+  #vx-content { max-width: 1100px; }
+}
+@media screen and (max-width: 768px) {
+  #vx-content { max-width: 100%; padding: 30px 15px 40px; }
+}
+.vx-alert { margin: 2em 0px; background-color: rgb(248, 248, 248) !important; padding: 12px 24px 12px 30px !important; border-radius: 0px !important; border-top: none !important; border-right: none !important; border-bottom: none !important; border-image: initial !important; border-left: 4px solid rgb(73, 139, 167) !important; color: inherit !important; }
+.vx-alert::before { background-color: rgb(73, 139, 167); border-radius: 100%; color: rgb(255, 255, 255); content: "!"; font-family: Dosis, "Source Sans Pro", "Helvetica Neue", Arial, sans-serif; font-size: 14px; font-weight: bold; left: -12px; line-height: 20px; position: absolute; height: 20px; width: 20px; text-align: center; top: 14px; }
+.vx-alert p { margin: 0.4em 0px; }
+.alert-success, .alert-s { border-color: rgb(66, 185, 131) !important; }
+.alert-success::before, .alert-s::before { background-color: rgb(66, 185, 131); }
+.alert-warning, .alert-w { border-color: rgb(255, 165, 2) !important; }
+.alert-warning::before, .alert-w::before { background-color: rgb(255, 165, 2); }
+.alert-info, .alert-i { border-color: rgb(112, 161, 255) !important; }
+.alert-info::before, .alert-i::before { background-color: rgb(112, 161, 255); }
+.alert-danger, .alert-d { border-color: rgb(255, 71, 87) !important; }
+.alert-danger::before, .alert-d::before { background-color: rgb(255, 71, 87); }
+.alert-light { border-color: rgb(193, 193, 193) !important; }
+.alert-light::before { background-color: rgb(193, 193, 193); }
+.alert-dark { border-color: rgb(72, 72, 72) !important; }
+.alert-dark::before { background-color: rgb(72, 72, 72); }
+.vx-header-anchor::after { background-color: rgb(238, 238, 238); padding: 0px 5px; border-radius: 3px; }
+.vx-header-anchor { color: rgb(153, 153, 153); display: inline-block; margin-left: 10px; }
+h1 .vx-header-anchor::after { content: "H1"; }
+h2 .vx-header-anchor::after { content: "H2"; }
+h3 .vx-header-anchor::after { content: "H3"; }
+h4 .vx-header-anchor::after { content: "H4"; }
+h5 .vx-header-anchor::after { content: "H5"; }
+h6 .vx-header-anchor::after { content: "H6"; }
+h1 .vx-header-anchor { margin-top: -5px; }
+h2 .vx-header-anchor { margin-top: -4px; }
+h3 .vx-header-anchor { margin-top: -3px; }
+h4 .vx-header-anchor { margin-top: -2px; }
+h5 .vx-header-anchor { margin-top: -1px; }
+.vx-alert .code-toolbar pre[class*="language-"] { border: 1px dashed rgb(238, 238, 238); background-color: rgb(243, 243, 243) !important; }
+code[class*="language-"], pre[class*="language-"] { color: rgb(82, 82, 82); background: none; text-shadow: white 0px 1px; font-size: 0.9rem; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; overflow-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none; }
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection, code[class*="language-"]::selection, code[class*="language-"] ::selection { text-shadow: none; background-color: rgb(25, 118, 210); color: white; }
+@media print {
+  code[class*="language-"], pre[class*="language-"] { text-shadow: none; }
+}
+pre[class*="language-"] { padding: 1em; margin: 0px; overflow: auto; border-radius: 4px; }
+:not(pre) > code[class*="language-"], pre[class*="language-"] { background: rgb(248, 248, 248) !important; }
+:not(pre) > code[class*="language-"] { padding: 0.1em; border-radius: 0.3em; white-space: normal; }
+.token.comment, .token.prolog, .token.doctype, .token.cdata { color: rgb(170, 85, 0); }
+.token.punctuation { color: rgb(153, 153, 153); }
+.token.namespace { opacity: 0.7; }
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol, .token.deleted { color: rgb(153, 0, 85); }
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted { color: rgb(102, 153, 0); }
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string { color: rgb(154, 110, 58); }
+.token.atrule, .token.attr-value, .token.keyword { color: rgb(119, 0, 136); }
+.token.function, .token.class-name { color: rgb(221, 74, 104); }
+.token.regex, .token.important, .token.variable { color: rgb(238, 153, 0); }
+.token.important, .token.bold { font-weight: bold; }
+.token.italic { font-style: italic; }
+.token.entity { cursor: help; }
+pre[class*="language-"].line-numbers { position: relative; padding-left: 3.8em; counter-reset: linenumber 0; }
+pre[class*="language-"].line-numbers > code { position: relative; white-space: inherit; letter-spacing: 1px; }
+.line-numbers .line-numbers-rows { position: absolute; pointer-events: none; top: 0px; font-size: 100%; left: -3.8em; width: 3em; letter-spacing: -1px; border-right: 1px solid rgb(221, 221, 221); color: rgb(153, 153, 153); user-select: none; }
+.line-numbers-rows > span { display: block; counter-increment: linenumber 1; }
+.line-numbers-rows > span::before { content: counter(linenumber); color: rgb(153, 153, 153); display: block; padding-right: 0.8em; text-align: right; }
+div.code-toolbar { position: relative; }
+div.code-toolbar > .toolbar { position: absolute; top: 0px; right: 0px; transition: opacity 0.3s ease-in-out 0s; opacity: 0; }
+div.code-toolbar:hover > .toolbar { opacity: 1; }
+div.code-toolbar:focus-within > .toolbar { opacity: 1; }
+div.code-toolbar > .toolbar .toolbar-item { display: inline-block; }
+div.code-toolbar > .toolbar a { cursor: pointer; }
+div.code-toolbar > .toolbar button { background: none; border: 0px; color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; font-family: inherit; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; line-height: normal; overflow: visible; padding: 0px; user-select: none; }
+div.code-toolbar > .toolbar a, div.code-toolbar > .toolbar button, div.code-toolbar > .toolbar span { color: rgb(255, 255, 255); font-size: 0.8em; font-weight: bold; padding: 0.2em 0.5em; border-radius: 0px 4px; background-color: rgb(92, 157, 255); }
+.vx-image-view-image { transition: all 0.3s ease 0s; }
+.vx-modal-box { display: none; position: fixed; z-index: 1000; padding-top: 50px; left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; background-color: rgba(51, 56, 66, 0.85); }
+.vx-modal-content { margin: auto; display: block; width: auto; height: auto; cursor: move; }
+.vx-modal-content { animation-name: zoom; animation-duration: 0.6s; }
+@-webkit-keyframes zoom { 
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+@keyframes zoom { 
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+span.vx-modal-close { position: absolute; z-index: 1000; top: 15px; right: 35px; color: rgb(171, 178, 191); font-size: 40px; font-weight: bold; transition: all 0.3s ease 0s; }
+span.vx-modal-close:hover, span.vx-modal-close:focus { color: rgb(215, 218, 224); text-decoration: none; cursor: pointer; }
+ul.contains-task-list { list-style-type: none; }
+.vx-alert { position: relative; padding: 0.75rem 1.25rem; margin-bottom: 1rem; border: 1px solid transparent; border-radius: 0.25rem; }
+.alert-primary { color: rgb(0, 64, 133); background-color: rgb(204, 229, 255); border-color: rgb(184, 218, 255); }
+.alert-secondary { color: rgb(56, 61, 65); background-color: rgb(226, 227, 229); border-color: rgb(214, 216, 219); }
+.alert-success { color: rgb(21, 87, 36); background-color: rgb(212, 237, 218); border-color: rgb(195, 230, 203); }
+.alert-info { color: rgb(12, 84, 96); background-color: rgb(209, 236, 241); border-color: rgb(190, 229, 235); }
+.alert-warning { color: rgb(133, 100, 4); background-color: rgb(255, 243, 205); border-color: rgb(255, 238, 186); }
+.alert-danger { color: rgb(114, 28, 36); background-color: rgb(248, 215, 218); border-color: rgb(245, 198, 203); }
+.alert-light { color: rgb(129, 129, 130); background-color: rgb(254, 254, 254); border-color: rgb(253, 253, 254); }
+.alert-dark { color: rgb(27, 30, 33); background-color: rgb(214, 216, 217); border-color: rgb(198, 200, 202); }
+
+    </style>
+
+    <script type="text/javascript">
+        var vxOutlineToc = [];
+
+var setVisible = function(node, visible) {
+    var cl = 'hide-none';
+    if (visible) {
+        node.classList.remove(cl);
+    } else {
+        node.classList.add(cl);
+    }
+};
+
+var isVisible = function(node) {
+    var cl = 'hide-none';
+    return !node.classList.contains(cl);
+};
+
+var setPostContentExpanded = function(node, expanded) {
+    var cl = 'col-expand';
+    if (expanded) {
+        node.classList.add(cl);
+    } else {
+        node.classList.remove(cl);
+    }
+};
+
+var setOutlinePanelVisible = function(visible) {
+    var outlinePanel = document.getElementById('outline-panel');
+    var postContent = document.getElementById('post-content');
+
+    setVisible(outlinePanel, visible);
+    setPostContentExpanded(postContent, !visible);
+};
+
+var isOutlinePanelVisible = function() {
+    var outlinePanel = document.getElementById('outline-panel');
+    return isVisible(outlinePanel);
+};
+
+window.addEventListener('load', function() {
+    var outlinePanel = document.getElementById('outline-panel');
+    outlinePanel.style.display = 'initial';
+
+    var floatingContainer = document.getElementById('container-floating');
+    floatingContainer.style.display = 'initial';
+
+    var outlineContent = document.getElementById('outline-content');
+    var postContent = document.getElementById('post-content');
+
+    // Escape @text to Html.
+    var escapeHtml = function(text) {
+        var map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+
+    // Fetch the outline.
+    var headers = postContent.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    vxOutlineToc = [];
+    for (var i = 0; i < headers.length; ++i) {
+        var header = headers[i];
+
+        vxOutlineToc.push({
+            level: parseInt(header.tagName.substr(1)),
+            anchor: header.id,
+            title: escapeHtml(header.textContent)
+        });
+    }
+
+    if (vxOutlineToc.length == 0) {
+        setOutlinePanelVisible(false);
+        setVisible(floatingContainer, false);
+        return;
+    }
+
+    var baseLevel = baseLevelOfToc(vxOutlineToc);
+    var tocTree = tocToTree(toPerfectToc(vxOutlineToc, baseLevel), baseLevel);
+
+    outlineContent.innerHTML = tocTree;
+    setOutlinePanelVisible(true);
+    setVisible(floatingContainer, true);
+});
+
+// Return the topest level of @vxOutlineToc, starting from 1.
+var baseLevelOfToc = function(p_toc) {
+    var level = -1;
+    for (i in p_toc) {
+        if (level == -1) {
+            level = p_toc[i].level;
+        } else if (level > p_toc[i].level) {
+            level = p_toc[i].level;
+        }
+    }
+
+    if (level == -1) {
+        level = 1;
+    }
+
+    return level;
+};
+
+// Handle wrong title levels, such as '#' followed by '###'
+var toPerfectToc = function(p_toc, p_baseLevel) {
+    var i;
+    var curLevel = p_baseLevel - 1;
+    var perfToc = [];
+    for (i in p_toc) {
+        var item = p_toc[i];
+
+        // Insert empty header.
+        while (item.level > curLevel + 1) {
+            curLevel += 1;
+            var tmp = { level: curLevel,
+                        anchor: '',
+                        title: '[EMPTY]'
+                      };
+            perfToc.push(tmp);
+        }
+
+        perfToc.push(item);
+        curLevel = item.level;
+    }
+
+    return perfToc;
+};
+
+var itemToHtml = function(item) {
+    return '<a href="#' + item.anchor + '" title="' + item.title + '" data="' + item.anchor + '">' + item.title + '</a>';
+};
+
+// Turn a perfect toc to a tree using <ul>
+var tocToTree = function(p_toc, p_baseLevel) {
+    var i;
+    var front = '<li>';
+    var ending = ['</li>'];
+    var curLevel = p_baseLevel;
+    for (i in p_toc) {
+        var item = p_toc[i];
+        if (item.level == curLevel) {
+            front += '</li>';
+            front += '<li>';
+            front += itemToHtml(item);
+        } else if (item.level > curLevel) {
+            // assert(item.level - curLevel == 1)
+            front += '<ul>';
+            ending.push('</ul>');
+            front += '<li>';
+            front += itemToHtml(item);
+            ending.push('</li>');
+            curLevel = item.level;
+        } else {
+            while (item.level < curLevel) {
+                var ele = ending.pop();
+                front += ele;
+                if (ele == '</ul>') {
+                    curLevel--;
+                }
+            }
+            front += '</li>';
+            front += '<li>';
+            front += itemToHtml(item);
+        }
+    }
+    while (ending.length > 0) {
+        front += ending.pop();
+    }
+    front = front.replace("<li></li>", "");
+    front = '<ul>' + front + '</ul>';
+    return front;
+};
+
+var toggleMore = function() {
+    if (vxOutlineToc.length == 0) {
+        return;
+    }
+
+    var p = document.getElementById('floating-more');
+    if (isOutlinePanelVisible()) {
+        p.textContent = '<';
+        setOutlinePanelVisible(false);
+    } else {
+        p.textContent = '>';
+        setOutlinePanelVisible(true);
+    }
+};
+
+window.addEventListener('scroll', function() {
+    if (vxOutlineToc.length == 0 || !isOutlinePanelVisible()) {
+        return;
+    }
+
+    var postContent = document.getElementById('post-content');
+    var scrollTop = document.documentElement.scrollTop
+                    || document.body.scrollTop
+                    || window.pageYOffset;
+    var eles = postContent.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+    if (eles.length == 0) {
+        return;
+    }
+
+    var idx = -1;
+    var biaScrollTop = scrollTop + 50;
+    for (var i = 0; i < eles.length; ++i) {
+        if (biaScrollTop >= eles[i].offsetTop) {
+            idx = i;
+        } else {
+            break;
+        }
+    }
+
+    var header = '';
+    if (idx != -1) {
+        header = eles[idx].id;
+    }
+
+    highlightItemOnlyInOutline(header);
+});
+
+var highlightItemOnlyInOutline = function(id) {
+    var cl = 'outline-bold';
+    var outlineContent = document.getElementById('outline-content');
+    var eles = outlineContent.querySelectorAll("a");
+    var target = null;
+    for (var i = 0; i < eles.length; ++i) {
+        var ele = eles[i];
+        if (ele.getAttribute('data') == id) {
+            target = ele;
+            ele.classList.add(cl);
+        } else {
+            ele.classList.remove(cl);
+        }
+    }
+
+    // TODO: scroll target into view within the outline panel scroll area.
+};
+
+    </script>
+
+    <!-- VX_SCRIPTS_PLACEHOLDER -->
+
+    <!-- VX_HEAD_PLACEHOLDER -->
+</head>
+<body class="<!-- VX_BODY_CLASS_LIST_PLACEHOLDER -->">
+    <div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+        <!-- VX_OUTLINE_PANEL_START -->
+        <div id="outline-panel" style="display:none;" class="d-none d-md-block d-xl-block col-md-3 col-xl-2 bd-toc">
+            <div id="outline-content" class="section-nav"></div>
+        </div>
+        <!-- VX_OUTLINE_PANEL_END -->
+
+        <div id="post-content" class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
+        <div id="vx-content" class="vx-constrain-image-width line-numbers"><h1 id="素材路径提取工具-·-asset-path-tool" class="source-line" data-source-line="0">素材路径提取工具 · Asset Path Tool<a class="vx-header-anchor" href="#素材路径提取工具-·-asset-path-tool" vx-data-anchor-icon="¶"></a></h1>
+<p class="source-line" data-source-line="2"><a href="README.html">English</a> | <a href="README_SC.html">简体中文</a> | <a href="README_TC.html">繁體中文</a> | <a href="README_JP.html">日本語</a></p>
+<p class="source-line" data-source-line="4">提取 <strong>Adobe Premiere Pro / After Effects / Audition</strong> 工程里的素材路径，并支持对比、重定向、使用统计。</p>
+<figure><img src="image/Preview_SC.jpg" alt="" class="vx-image-view-image"></figure>
+<hr>
+<h2 id="功能特点" class="source-line" data-source-line="10">功能特点<a class="vx-header-anchor" href="#功能特点" vx-data-anchor-icon="¶"></a></h2>
+<table class="source-line" data-source-line="12">
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 提取路径</strong></td>
+<td>从 <code>.prproj</code> / <code>.aep</code> / <code>.aepx</code> / <code>.sesx</code> / <code>.xml</code> 里读出「项目文件夹 → 硬盘真实路径」，同时检查文件是否还在硬盘上。文件夹按树形折叠展示，支持展开全部 / 收起全部。</td>
+</tr>
+<tr>
+<td><strong>② 对比项目</strong></td>
+<td>两个工程互相比，分类列出<strong>新增 / 删除 / 路径变化 / 位置变化 / 未变</strong>。适合「这次改版动了哪些素材」「自动保存副本和主工程差在哪」。对比完可以一键「填到重定向表」。</td>
+</tr>
+<tr>
+<td><strong>③ 路径重定向</strong></td>
+<td>先列出全部素材路径，再按前缀规则批量换盘（<code>D:\</code> → <code>E:\</code>）；规则收在「规则表…」弹窗里，不占主界面。也可以双击某一行单独指定新位置。可选另存一份改写好的工程（<code>.prproj</code> / <code>.sesx</code>，<strong>绝不覆盖原文件</strong>）。</td>
+</tr>
+<tr>
+<td><strong>④ 使用统计</strong></td>
+<td>分析时间线，统计每个素材被用了几次、累计时长、出现在哪些序列，顺便揪出「一次都没用过」的素材。支持按文件夹 / 按类型汇总，连占用空间一起算。</td>
+</tr>
+</tbody>
+</table>
+<p class="source-line" data-source-line="19">其他：</p>
+<ul>
+<li class="source-line" data-source-line="21"><strong>拖放</strong>：把工程文件直接拖进窗口，拖到哪个输入框就填哪个；对比页一次拖两个会自动分成 A / B。<br>
+把<strong>文件夹</strong>拖到「查找缺失…」窗口上会填进「搜索目录」。</li>
+<li class="source-line" data-source-line="23"><strong>多选</strong>：所有表格都支持 <code>Ctrl</code> 点选、<code>Shift</code> 连选；首列还有复选框，点表头一次全选，<br>
+也可以用「勾选 / 全选 / 全不选」三个按钮批量操作。</li>
+<li class="source-line" data-source-line="25"><strong>右键菜单</strong>：重定向表和「查找缺失…」结果表都能右键，直接「选择新位置…」/「清除手动指定」/「在资源管理器中定位」。</li>
+<li class="source-line" data-source-line="26"><strong>四语言</strong>：简体中文 / 繁體中文 / English / 日本語，首次启动<strong>自动跟随系统语言</strong>，之后记住你的选择。</li>
+<li class="source-line" data-source-line="27"><strong>检查更新</strong>：标题栏右侧有版本号和「检查更新」按钮，会读取 GitHub（连不上时自动改用 Gitee）最新的<br>
+Release tag，并列出各平台下载地址。</li>
+<li class="source-line" data-source-line="29"><strong>命令行模式</strong>：<code>--cli</code> 无界面直接出结果，方便批处理。</li>
+<li class="source-line" data-source-line="30"><strong>零依赖</strong>：只用 Python 标准库（tkinter / xml / gzip / csv / re / ctypes），不用 pip 装任何东西。</li>
+<li class="source-line" data-source-line="31"><strong>现代界面</strong>：内置 <a href="https://github.com/bvb6417/tkwebui">tkwebui</a> 主题（纯标准库实现），高 DPI 屏下自动缩放。</li>
+</ul>
+<h2 id="支持的工程格式" class="source-line" data-source-line="33">支持的工程格式<a class="vx-header-anchor" href="#支持的工程格式" vx-data-anchor-icon="¶"></a></h2>
+<table class="source-line" data-source-line="35">
+<thead>
+<tr>
+<th>软件</th>
+<th>扩展名</th>
+<th style="text-align:center">提取</th>
+<th style="text-align:center">对比</th>
+<th style="text-align:center">重定向清单</th>
+<th style="text-align:center">改写工程</th>
+<th style="text-align:center">使用统计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Premiere Pro</td>
+<td><code>.prproj</code></td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+</tr>
+<tr>
+<td>Premiere Pro</td>
+<td><code>.xml</code>（导出/解压后的 XML）</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">✅</td>
+</tr>
+<tr>
+<td>After Effects</td>
+<td><code>.aep</code> / <code>.aepx</code></td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td>Audition</td>
+<td><code>.sesx</code></td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">✅</td>
+<td style="text-align:center">❌</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p class="source-line" data-source-line="42"><strong>为什么 <code>.aep</code> 不能改写？</strong><br>
+AE 工程是 RIFX（大端 RIFF）二进制容器，素材路径散落在 <code>LIST Als2</code> 里的一段段转义 JSON 中，<br>
+还有大量交叉索引和长度字段。直接改字节极易损坏工程，所以本工具对 <code>.aep</code> <strong>只读</strong>。<br>
+能提取路径已经够用来做备份清单和迁移核对了。</p>
+<p class="source-line" data-source-line="47"><strong><code>.sesx</code> 可以改写</strong>：纯文本 XML，只替换 <code>&lt;file&gt;</code> 开标签里的 <code>absolutePath</code> 属性值，<br>
+元素顺序、缩进、注释、换行符全都原样保留；<code>id</code> 不动，所以 fileID ↔ 路径的对应关系不受影响。<br>
+<code>relativePath</code> 会按新位置重算，新文件跑到会话目录外面时这个属性会被删掉（留着旧的反而会打架）。<br>
+UTF-8 BOM 原样带回。<strong>同样只写新文件，绝不覆盖原会话。</strong></p>
+</blockquote>
+<hr>
+<h2 id="快速开始" class="source-line" data-source-line="54">快速开始<a class="vx-header-anchor" href="#快速开始" vx-data-anchor-icon="¶"></a></h2>
+<h3 id="方式一：下载打包好的版本（推荐）" class="source-line" data-source-line="56">方式一：下载打包好的版本（推荐）<a class="vx-header-anchor" href="#方式一：下载打包好的版本（推荐）" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="58">到 <a href="https://github.com/SaraKale/AssetPathTool/releases">Releases</a> 页面按平台下载：</p>
+<table class="source-line" data-source-line="60">
+<thead>
+<tr>
+<th>平台</th>
+<th>选哪个</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td><code>windows-x64</code>（绝大多数电脑）；骁龙本选 <code>windows-arm64</code></td>
+</tr>
+<tr>
+<td>macOS</td>
+<td><code>macos-arm64</code>（M1/M2/M3/M4）；Intel 机器选 <code>macos-x64</code></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><code>linux-x64</code> 或 <code>linux-arm64</code></td>
+</tr>
+</tbody>
+</table>
+<p class="source-line" data-source-line="66">Windows / Linux 解压后直接运行 <code>AssetPathTool</code>（文件夹版，别单独拷 exe，<code>_internal</code> 要一起带着）。</p>
+<p class="source-line" data-source-line="68">GitHub 连不上时走镜像：</p>
+<table class="source-line" data-source-line="70">
+<thead>
+<tr>
+<th>镜像</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub</td>
+<td><a href="https://github.com/SaraKale/AssetPathTool/releases">https://github.com/SaraKale/AssetPathTool/releases</a></td>
+</tr>
+<tr>
+<td>Gitee</td>
+<td><a href="https://gitee.com/sarakale/AssetPathTool/releases">https://gitee.com/sarakale/AssetPathTool/releases</a></td>
+</tr>
+<tr>
+<td>蓝奏云</td>
+<td><a href="https://wwavg.lanzoum.com/b0rbjanfg%EF%BC%88%E6%8F%90%E5%8F%96%E7%A0%81">https://wwavg.lanzoum.com/b0rbjanfg（提取码</a> <code>914k</code>）</td>
+</tr>
+<tr>
+<td>MediaFire</td>
+<td><a href="https://www.mediafire.com/folder/1ik8qiblrl7s1/AssetPathTool">https://www.mediafire.com/folder/1ik8qiblrl7s1/AssetPathTool</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p class="source-line" data-source-line="77">macOS 首次打开若提示「无法验证开发者」，右键 → 打开，或在终端执行<br>
+<code>xattr -dr com.apple.quarantine /path/to/AssetPathTool.app</code>。</p>
+</blockquote>
+<h3 id="方式二：从源码运行" class="source-line" data-source-line="80">方式二：从源码运行<a class="vx-header-anchor" href="#方式二：从源码运行" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="82">需要 Python 3.9+（推荐 3.11 及以上），且带 tkinter。</p>
+<div class="code-toolbar"><pre class="language-bash line-numbers"><code class="source-line language-bash" data-source-line="84"><span class="token function">git</span> clone https://github.com/SaraKale/AssetPathTool
+<span class="token builtin class-name">cd</span> AssetPathTool
+python AssetPathToolMain.py
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<p class="source-line" data-source-line="90">Windows 上如果提示缺 tkinter，用官方安装包重装并勾选 <code>tcl/tk and IDLE</code>。</p>
+<hr>
+<h2 id="命令行用法" class="source-line" data-source-line="94">命令行用法<a class="vx-header-anchor" href="#命令行用法" vx-data-anchor-icon="¶"></a></h2>
+<div class="code-toolbar"><pre class="language-bash line-numbers"><code class="source-line language-bash" data-source-line="96"><span class="token comment"># 提取（.prproj / .aep / .sesx / .xml 都行）</span>
+python AssetPathToolMain.py --cli 项目.prproj
+python AssetPathToolMain.py --cli 动效.aep
+python AssetPathToolMain.py --cli 配音.sesx
+
+<span class="token comment"># 对比两个工程</span>
+python AssetPathToolMain.py --cli 旧.prproj 新.prproj --diff
+
+<span class="token comment"># 路径重定向（可重复给多条规则）</span>
+python AssetPathToolMain.py --cli 项目.prproj --remap <span class="token string">"D:\旧素材"</span> <span class="token string">"E:\新素材"</span>
+
+<span class="token comment"># 使用统计</span>
+python AssetPathToolMain.py --cli 项目.prproj --usage
+
+<span class="token comment"># 常用开关</span>
+--csv              同时导出 CSV
+-o out.txt         指定输出文件
+--rewrite out.prproj   另存一份改写后的工程（不覆盖原文件）
+--all              对比时把序列 / 调整图层等无源文件条目也算进去
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<hr>
+<h2 id="界面说明" class="source-line" data-source-line="120">界面说明<a class="vx-header-anchor" href="#界面说明" vx-data-anchor-icon="¶"></a></h2>
+<h3 id="①-提取路径" class="source-line" data-source-line="122">① 提取路径<a class="vx-header-anchor" href="#①-提取路径" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="124">选好工程 → 点「开始提取」。上方四个数字是概览：素材条目 / 有路径 / 硬盘缺失 / 文件夹。</p>
+<ul>
+<li class="source-line" data-source-line="126">「筛选」框输入关键字，按文件夹名、素材名、路径实时过滤；</li>
+<li class="source-line" data-source-line="127">勾「只看缺失素材」只留硬盘上找不到的；</li>
+<li class="source-line" data-source-line="128">左侧 <code>▼ / ▶</code> 可以直接点，也可以点右上角「展开全部 / 收起全部」；</li>
+<li class="source-line" data-source-line="129">素材名最前面的 <code>☐</code> 点一下就勾上，方便把一批素材圈出来。</li>
+</ul>
+<h3 id="②-对比项目" class="source-line" data-source-line="131">② 对比项目<a class="vx-header-anchor" href="#②-对比项目" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="133">A 填旧版本，B 填新版本 → 点「开始对比」。上方徽章显示五类变化各多少条，「只看」可以只看某一类。</p>
+<p class="source-line" data-source-line="135">默认会忽略序列、调整图层这类没有源文件的条目（否则结果会被噪音淹没），需要的话勾上「包含序列/调整图层等无源文件条目」。</p>
+<p class="source-line" data-source-line="137"><strong>对比完可以直接接到重定向</strong>：点「填到重定向表」，把这次对比出的「路径变化」逐条填进重定向页 ——<br>
+不用再自己看报告抄旧前缀 / 新前缀。重定向页还没加载项目时会先把 A（旧项目）填进去，<br>
+让你先「加载全部」；两边不是同一个项目时会先问一句。<br>
+想顺便把变化提炼成前缀规则（以后新增的素材也能自动套用），勾上「同时提炼前缀规则」——<br>
+整体换盘 / 搬目录的情况通常一条规则就够。</p>
+<h3 id="③-路径重定向" class="source-line" data-source-line="143">③ 路径重定向<a class="vx-header-anchor" href="#③-路径重定向" vx-data-anchor-icon="¶"></a></h3>
+<ol>
+<li class="source-line" data-source-line="145">选工程 → 点「加载全部」，下方列出所有素材；</li>
+<li class="source-line" data-source-line="146">点「规则表…」打开规则弹窗：填「原路径前缀 / 新路径前缀」→「+ 添加规则」。<br>
+规则<strong>从上到下匹配，命中第一条生效</strong>，可以用「上移 / 下移」调整优先级；</li>
+<li class="source-line" data-source-line="148">关掉弹窗（或直接在里面点「应用规则」）→ 主界面点「应用规则」批量换；</li>
+<li class="source-line" data-source-line="149">个别素材想单独指定：<strong>双击那一行</strong>选新文件；右键可「选择新位置…」/「清除手动指定」/「在资源管理器中定位」；</li>
+<li class="source-line" data-source-line="150">路径对不上时点「查找缺失…」，选一个素材目录，按<strong>文件名前缀</strong>去匹配（后缀不同也能认出来，<code>flv/mp4/mov</code> 互相认），相似度 ≥85% 的结果会自动勾上；</li>
+<li class="source-line" data-source-line="151">确认无误后「导出清单」拿路径列表，或直接点「导出新文件」另存一份改写好的工程（<strong>不覆盖原工程</strong>）。</li>
+</ol>
+<p class="source-line" data-source-line="153"><strong>导出按钮</strong>（右上角，从左到右）：</p>
+<table class="source-line" data-source-line="155">
+<thead>
+<tr>
+<th>按钮</th>
+<th>产物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>导出新文件</strong></td>
+<td>改写后的工程：<code>.prproj</code> 或 <code>.sesx</code>（按源文件类型自动决定），会先让你选保存位置；选到原工程路径会被拦住</td>
+</tr>
+<tr>
+<td>导出清单</td>
+<td><code>_重定向.txt</code> 路径对照表（在规则表里勾了「同时另存改写后的工程文件」时会顺带生成工程文件）</td>
+</tr>
+<tr>
+<td>导出 CSV</td>
+<td><code>_重定向.csv</code> 明细表，给 Excel 用</td>
+</tr>
+</tbody>
+</table>
+<p class="source-line" data-source-line="161"><strong>查找缺失弹窗里也能右键</strong>：<code>采用这个建议</code> / <code>选择新位置…</code> / <code>在资源管理器中定位</code>。<br>
+「采用这个建议」只应用右键点中的那一行；「选择新位置…」可以绕过匹配结果直接指定文件；<br>
+「定位」会打开资源管理器并选中文件。</p>
+<p class="source-line" data-source-line="165">结果表除了素材名和相似度，还列出候选文件的<strong>大小</strong>和<strong>修改时间</strong> ——<br>
+同名不同版本太常见（4K 修复版、压缩版、导出了两次），光看文件名和相似度判断不了，<br>
+有这两列就能一眼看出是不是同一个东西。</p>
+<blockquote>
+<p class="source-line" data-source-line="169"><strong>不选任何行直接点「应用到重定向表」= 全部应用</strong>（每个素材取最佳候选）。<br>
+只改一部分就先 <code>Ctrl</code> / <code>Shift</code> 选中那几行再点。</p>
+<p class="source-line" data-source-line="172">一个缺失素材可能匹配出好几个候选（名字短的尤其容易，比如都带「仙剑3外传」这种系列前缀）。<br>
+那不是重复行，是同一素材的备选。默认勾着「每个素材只留最佳候选」，低分备选不显示；<br>
+取消勾选就能看到全部，同一素材的第 2 条起素材名列显示 <code>└ 备选</code>，排在一起。</p>
+<p class="source-line" data-source-line="176">表格首列的 <code>☐</code> 是给「查找缺失…」圈范围的：勾了行就只处理勾选的行，没勾就处理选中的行，都没选才处理全部缺失。</p>
+<p class="source-line" data-source-line="178">批量勾选用「勾选 / 全选 / 全不选」三个按钮：</p>
+<ul>
+<li class="source-line" data-source-line="179"><strong>勾选</strong> —— 把表格里 <code>Ctrl</code> / <code>Shift</code> 选中的行打上勾；</li>
+<li class="source-line" data-source-line="180"><strong>全选</strong> —— 勾上当前「只看」筛选后<strong>可见</strong>的行（筛掉的不动）；</li>
+<li class="source-line" data-source-line="181"><strong>全不选</strong> —— <strong>连筛掉的一起清空</strong>，一个不留。</li>
+</ul>
+<p class="source-line" data-source-line="183">「清空手动指定」清的是<strong>手动指定的新路径</strong>（双击 / 右键选过的那些），<br>
+清完这些行会重新按规则计算，和勾选、筛选完全无关。</p>
+</blockquote>
+<blockquote>
+<p class="source-line" data-source-line="186">⚠️ 改写前请备份工程。改写产物是新文件，原工程一个字节都不会动。</p>
+</blockquote>
+<h3 id="④-使用统计" class="source-line" data-source-line="188">④ 使用统计<a class="vx-header-anchor" href="#④-使用统计" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="190">选 <code>.prproj</code> → 「开始统计」。徽章给出素材总数 / 已使用 / 从未使用 / 序列数 / 时间线总时长。</p>
+<p class="source-line" data-source-line="192">右上角「视图」可以切换：</p>
+<table class="source-line" data-source-line="194">
+<thead>
+<tr>
+<th>视图</th>
+<th>看什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>逐条</strong></td>
+<td>每个素材一条：用了几次、累计多长、出现在哪些序列</td>
+</tr>
+<tr>
+<td><strong>按文件夹</strong></td>
+<td>每个项目文件夹一组：多少素材、多少没用过、共占多大</td>
+</tr>
+<tr>
+<td><strong>按类型</strong></td>
+<td>按视频 / 音频 / 图片分组，同上</td>
+</tr>
+</tbody>
+</table>
+<p class="source-line" data-source-line="200">「按文件夹」最实用的场景：硬盘快满了，先看哪个目录吃得最多、其中多少从来没用过<br>
+（实测一个 1152 素材的工程里，某个文件夹 42 个素材就占了 194 GB）。<br>
+「只看」筛选对汇总视图同样生效，可以只看「从未使用」的分组。<br>
+「逐条」视图按使用次数升序排列，没用过的排最前，一眼看出哪些素材是白买的。</p>
+<p class="source-line" data-source-line="205"><strong>拖文件夹</strong>：把文件夹拖到「查找缺失…」窗口上，会自动填进「搜索目录」；<br>
+窗口没开时把文件夹拖到主窗口，也会转过去（没开就提示你先打开）。</p>
+<hr>
+<h2 id="多语言" class="source-line" data-source-line="210">多语言<a class="vx-header-anchor" href="#多语言" vx-data-anchor-icon="¶"></a></h2>
+<p class="source-line" data-source-line="212">界面支持简体中文、繁體中文、English、日本語。右上角下拉框随时切换，<strong>不重建窗口</strong>，输入框里的路径和表格里的数据都还在。</p>
+<p class="source-line" data-source-line="214">首次启动会读系统 UI 语言自动选择；之后记住你的选择，配置文件就放在<strong>程序旁边</strong>，好找：</p>
+<table class="source-line" data-source-line="216">
+<thead>
+<tr>
+<th>运行方式</th>
+<th>配置文件位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>打包版</td>
+<td>与 <code>AssetPathTool.exe</code> 同目录：<code>AssetPathTool.config.json</code></td>
+</tr>
+<tr>
+<td>源码运行</td>
+<td>项目根目录：<code>AssetPathTool.config.json</code></td>
+</tr>
+<tr>
+<td>程序目录不可写（Program Files、macOS <code>.app</code> 内部、<code>/usr/local</code>）</td>
+<td><code>%APPDATA%\AssetPathTool\config.json</code>（macOS/Linux 为 <code>~/.config/AssetPathTool/</code>）</td>
+</tr>
+</tbody>
+</table>
+<p class="source-line" data-source-line="222">因为是绿色版思路，<strong>整个文件夹拷到另一台电脑，语言设置也跟着走</strong>。想恢复「跟随系统」，删掉这个文件再启动即可。</p>
+<p class="source-line" data-source-line="224">新增一门语言：在 <code>src/i18n.py</code> 的 <code>LANGS</code> 加一行，再给 <code>_T</code> 的每条补一列。</p>
+<hr>
+<h2 id="构建打包" class="source-line" data-source-line="228">构建打包<a class="vx-header-anchor" href="#构建打包" vx-data-anchor-icon="¶"></a></h2>
+<h3 id="本机打包" class="source-line" data-source-line="230">本机打包<a class="vx-header-anchor" href="#本机打包" vx-data-anchor-icon="¶"></a></h3>
+<div class="code-toolbar"><pre class="language-bash line-numbers"><code class="source-line language-bash" data-source-line="232">pip <span class="token function">install</span> pyinstaller
+pyinstaller AssetPathTool.spec --noconfirm
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></div>
+<p class="source-line" data-source-line="237">产物在 <code>dist/AssetPathTool/</code>。</p>
+<p class="source-line" data-source-line="239"><code>.spec</code> 里几个关键点：</p>
+<table class="source-line" data-source-line="241">
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ONEFILE</code></td>
+<td><code>False</code></td>
+<td>文件夹版启动快；改成 <code>True</code> 就是一个单文件 exe（首次启动慢 1~3 秒）</td>
+</tr>
+<tr>
+<td>版本号</td>
+<td>从 <code>src/appinfo.py</code> 的 <code>APP_VER</code> 读</td>
+<td>唯一来源，exe 属性里的版本和标题栏永远一致</td>
+</tr>
+<tr>
+<td><code>hiddenimports</code></td>
+<td><code>collect_submodules("tkwebui")</code> + <code>collect_submodules("src")</code></td>
+<td>主题和页面模块是动态加载的，不显式列会漏</td>
+</tr>
+<tr>
+<td><code>excludes</code></td>
+<td>numpy / pandas / PyQt / PIL …</td>
+<td>从 200MB+ 压到 <strong>31MB</strong></td>
+</tr>
+<tr>
+<td><code>console</code></td>
+<td><code>False</code></td>
+<td>GUI 不要黑框；<code>--cli</code> 模式内部会自己接回控制台</td>
+</tr>
+</tbody>
+</table>
+<h3 id="github-actions" class="source-line" data-source-line="249">GitHub Actions<a class="vx-header-anchor" href="#github-actions" vx-data-anchor-icon="¶"></a></h3>
+<p class="source-line" data-source-line="251"><code>.github/workflows/build-app.yml</code> 已经配好，六平台矩阵：</p>
+<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="253">Windows x64 / Windows ARM64 / macOS Intel / macOS ARM64 / Linux x64 / Linux ARM64
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div>
+<p class="source-line" data-source-line="257">触发方式：</p>
+<ul>
+<li class="source-line" data-source-line="259"><strong>推 tag</strong>：<code>git tag v1.0.0 &amp;&amp; git push origin v1.0.0</code> → 自动构建并创建 <strong>Draft Release</strong>；</li>
+<li class="source-line" data-source-line="260"><strong>手动</strong>：Actions 页面 → Build Asset Path Tool → Run workflow，<code>release_tag</code> 填版本号（留空则只产出 artifact，不发 Release）。</li>
+</ul>
+<hr>
+<h2 id="项目结构" class="source-line" data-source-line="264">项目结构<a class="vx-header-anchor" href="#项目结构" vx-data-anchor-icon="¶"></a></h2>
+<div class="code-toolbar"><pre class="language-txt line-numbers"><code class="source-line language-txt" data-source-line="266">AssetPathToolMain.py        程序入口（GUI / CLI 分派）
+AssetPathTool.spec          PyInstaller 打包配置
+src/
+  appinfo.py                应用名 / 版本号 / 配置目录
+  i18n.py                   四语言文案表 + 系统语言检测
+  theme.py                  调色板 + ttk 样式 + tkwebui 探测
+  platform_utils.py         DPI / 控制台接管 / 文件拖放
+  cli.py                    命令行模式
+  core/                     纯解析逻辑（不依赖 tkinter）
+    prproj.py               .prproj / .xml 解析
+    aep.py                  .aep / .aepx 解析（RIFX + gzip XML）
+    sesx.py                 .sesx（Audition）解析 + 改写
+    loader.py               按扩展名分派（提取 / 改写都走这里）
+    usage.py                时间线使用统计 + 分组汇总
+    diff.py                 两工程对比 + 提炼重定向规则
+    remap.py                前缀重定向 + 改写 .prproj
+    matching.py             按文件名找缺失素材
+    fsinfo.py               文件大小 / 修改时间
+    update.py               查 GitHub / Gitee 最新 Release tag
+  ui/                       界面层
+    app.py                  主窗口骨架 / 语言切换 / 后台任务
+    kit.py                  公共控件工厂
+    page_extract.py         ① 提取
+    page_diff.py            ② 对比
+    page_remap.py           ③ 重定向
+    page_usage.py           ④ 使用统计
+    finder.py               「查找缺失…」弹窗
+    update_win.py           「检查更新」弹窗
+tkwebui/                    界面主题库（MIT，随项目分发）
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<p class="source-line" data-source-line="298"><code>src/core/</code> 不 import tkinter，可以单独拿去做脚本或单元测试：</p>
+<div class="code-toolbar"><pre class="language-python line-numbers"><code class="source-line language-python" data-source-line="300"><span class="token keyword">from</span> src<span class="token punctuation">.</span>core<span class="token punctuation">.</span>loader <span class="token keyword">import</span> extract_any
+<span class="token keyword">for</span> r <span class="token keyword">in</span> extract_any<span class="token punctuation">(</span><span class="token string">"项目.prproj"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">[</span><span class="token string">"folder"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> r<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> r<span class="token punctuation">[</span><span class="token string">"exists"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></div>
+<hr>
+<h2 id="注意事项" class="source-line" data-source-line="308">注意事项<a class="vx-header-anchor" href="#注意事项" vx-data-anchor-icon="¶"></a></h2>
+<ul>
+<li class="source-line" data-source-line="310"><strong><code>.prproj</code> 是 gzip 压缩的 XML</strong>（magic <code>1f 8b</code>），本工具会自动解压，不需要你手动处理。</li>
+<li class="source-line" data-source-line="311"><strong>改写 <code>.prproj</code> 只写新文件</strong>，原工程不会被修改；但改写属于实验性功能，<strong>请务必先备份</strong>，并先在 Premiere 里打开产物确认素材都在线。</li>
+<li class="source-line" data-source-line="312"><strong>素材是否「存在」取决于运行本工具的这台电脑</strong>。在 A 电脑提取的清单拿到 B 电脑看，缺失数会不一样，这是正常的。</li>
+<li class="source-line" data-source-line="313"><strong>大工程需要时间</strong>。1000+ 素材的工程解析约 1~2 秒；「查找缺失」扫描几十万文件的素材盘会更久，工具会提示你先缩小范围。</li>
+<li class="source-line" data-source-line="314"><strong><code>.aep</code> 只读</strong>，见上文说明；<code>.prproj</code> / <code>.sesx</code> 可以另存改写版，但<strong>从不覆盖原文件</strong>。</li>
+<li class="source-line" data-source-line="315"><strong>配置文件</strong>是程序旁边的 <code>AssetPathTool.config.json</code>，只记录界面语言，删掉就等于恢复默认。</li>
+</ul>
+<h2 id="常见问题" class="source-line" data-source-line="317">常见问题<a class="vx-header-anchor" href="#常见问题" vx-data-anchor-icon="¶"></a></h2>
+<p class="source-line" data-source-line="319"><strong>Q：提示缺少 tkinter？</strong><br>
+Windows 用 <a href="http://python.org">python.org</a> 官方安装包重装，勾上 <code>tcl/tk and IDLE</code>；Ubuntu 执行 <code>sudo apt install python3-tk</code>；macOS 用 <a href="http://python.org">python.org</a> 版本（brew 的 python 有时不带 tk）。</p>
+<p class="source-line" data-source-line="322"><strong>Q：打包后的 exe 用 <code>--cli</code> 没输出？</strong><br>
+<code>console=False</code> 的 exe 在双击时没有控制台。请在 cmd / PowerShell 里运行，或用 <code>-o</code> 指定输出文件。注意 Git Bash / MinTTY 是 pty，接不上 Win32 控制台。</p>
+<p class="source-line" data-source-line="325"><strong>Q：能提取 Premiere 的 <code>.xml</code> 吗？</strong><br>
+可以，选文件时直接选 <code>.xml</code> 即可。</p>
+<p class="source-line" data-source-line="328"><strong>Q：Audition 的 <code>.sesx</code> 能提取吗？</strong><br>
+能，和 <code>.prproj</code> 一样拖进去就行。<code>.sesx</code> 是纯文本 XML，路径写在 <code>&lt;file&gt;</code> 元素的<br>
+<code>absolutePath</code> <strong>属性</strong>上（不是子标签），相对路径在 <code>relativePath</code> 里；<br>
+工具两者都读，还有绝对路径正则兜底，编码上 UTF-8 / GB18030 / UTF-16 都试。<br>
+Audition 没有 PR 那种「项目文件夹」，所以列表里按<strong>素材所在目录</strong>分组。</p>
+<p class="source-line" data-source-line="334"><strong>Q：<code>.sesx</code> 提取出来是空的？</strong><br>
+早期版本只扫 <code>&lt;filePath&gt;</code> 子标签，而真实 Audition 会话用的是 <code>absolutePath</code><br>
+属性，所以一条都读不到 —— 已在 v1.0.0 修复。如果还是空，工具会明确弹窗说明<br>
+可能原因（工程没引用外部素材 / 格式不支持 / 文件损坏）。</p>
+<p class="source-line" data-source-line="339"><strong>Q：Audition 的 <code>.sesx</code> 能改写吗？</strong><br>
+能。只替换 <code>&lt;file&gt;</code> 开标签里的 <code>absolutePath</code> 属性值，<code>id</code>、元素顺序、缩进、注释、<br>
+换行符全都原样保留，UTF-8 BOM 也带回去。<code>relativePath</code> 会按新位置重算；<br>
+新文件跑到会话目录外面时这个属性会被删掉 —— 留着旧的相对路径反而会让 Audition 两边打架。<br>
+用真实会话实测：6 条路径全部命中，改完能重新解析，<code>id</code> 一个没变。</p>
+<p class="source-line" data-source-line="345"><strong>Q：会改我的工程文件吗？</strong><br>
+提取、对比、统计都是只读。改写只在「导出新文件」或勾了「同时另存改写后的工程文件」时才发生，<br>
+而且永远写到新路径 —— 手选到原工程也会被拦住。</p>
+<p class="source-line" data-source-line="349"><strong>Q：「检查更新」是怎么工作的？</strong><br>
+读 GitHub API 的最新 Release tag，连不上时自动改用 Gitee，再跟程序内置的版本号比大小。<br>
+发版时 tag 打成 <code>v&lt;APP_VER&gt;</code>，所以比较纯粹是数字比大小。不会自动下载或安装任何东西，<br>
+窗口只列出各平台下载地址。</p>
+<hr>
+<h2 id="许可" class="source-line" data-source-line="356">许可<a class="vx-header-anchor" href="#许可" vx-data-anchor-icon="¶"></a></h2>
+<p class="source-line" data-source-line="358"><a href="LICENSE">MIT</a></p>
+<p class="source-line" data-source-line="360">界面主题 <a href="https://github.com/bvb6417/tkwebui">tkwebui</a> 同样是 MIT 许可，已随项目一起分发。</p>
+</div>
+        </div>
+    </div>
+    </div>
+
+    <!-- VX_OUTLINE_BUTTON_START -->
+    <div id="container-floating" style="display:none;" class="d-none d-md-block d-xl-block">
+        <div id="floating-button" onclick="toggleMore()">
+            <p id="floating-more" class="more">&gt;</p>
+        </div>
+    </div>
+    <!-- VX_OUTLINE_BUTTON_END -->
+</body>
+</html>
